@@ -1,1 +1,155 @@
 /* You can add global styles to this file, and also import other style files */
+@main-bg: #e5e5e5;
+@primary: #ff005f;
+@disabled: #f44b88;
+
+html,
+body {
+  height: 100%;
+  background-color: @main-bg;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+form {
+  margin: 20px 10px;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+    .error {
+      font-size: 14px;
+      color: @primary;
+      font-weight: 500;
+      padding: 0 30px;
+      transform: translateY(-10px);
+    }
+  }
+  .passw-field {
+    mat-icon {
+      align-self: end;
+      position: relative;
+      right: 40px;
+      bottom: -40px;
+      z-index: 3;
+      margin-top: -25px;
+    }
+  }
+
+  label {
+    display: block;
+    width: fit-content;
+    font-size: 12px;
+    position: relative;
+    top: -39px;
+    left: 41px;
+    color: #797777;
+    transition: all 0.6s;
+  }
+
+  input {
+    border: none;
+    border-radius: 28px;
+    background-color: white;
+    padding: 20px 7px 20px 21px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+    outline: none;
+    width: -webkit-fill-available;
+    max-width: 331px;
+    z-index: 2;
+    position: relative;
+  }
+
+  input::placeholder {
+    font-size: 12px;
+    transform: translateX(10);
+  }
+
+  input:focus::placeholder {
+    color: transparent;
+  }
+
+  input:focus + label {
+    display: block;
+    color: @primary;
+    top: -55px;
+    z-index: 3;
+  }
+
+  .filled,
+  input:focus ~ label,
+  input.ng-not-empty ~ label {
+    display: block;
+    color: @primary;
+    top: -55px;
+    border: none;
+    z-index: 3;
+  }
+
+  p,
+  a {
+    font-size: 14px;
+    color: @primary;
+    font-weight: 500;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .button {
+    width: -webkit-fill-available;
+    max-width: 358px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: 1px solid @primary;
+    border-radius: 32px;
+    margin: 5px;
+    padding: 15px 50px;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .button-primary {
+    color: @main-bg;
+    background-color: @primary;
+
+    &:hover {
+      background-color: #e70457;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: @disabled;
+      border: 1px solid @disabled;
+    }
+  }
+
+  .button-secondary {
+    color: #ff005f;
+    background-color: @main-bg;
+
+    &:hover {
+      background-color: #d9d9d9;
+    }
+  }
+}
+
+//Border radius dialogo
+.custom-dialog {
+  .mat-mdc-dialog-surface.mdc-dialog__surface {
+    border-radius: 30px;
+  }
+}

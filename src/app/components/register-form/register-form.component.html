@@ -1,0 +1,66 @@
+<form
+  class="register-form"
+  [formGroup]="registerForm"
+  (ngSubmit)="onRegister()"
+  autocomplete="off"
+>
+  <div class="field name-field">
+    <div class="input-wrapper">
+      <input
+        formControlName="name"
+        type="text"
+        placeholder="Nombre"
+        name="name"
+      />
+      <label for="name" [class.filled]="registerForm.get('name')?.value"
+        >Nombre</label
+      >
+    </div>
+  </div>
+
+  <div class="field departments-field">
+    <mat-icon> {{ "chevron_right" }} </mat-icon>
+    <input
+      #departmentInput
+      formControlName="departments"
+      type="text"
+      placeholder="Departamentos"
+      name="Departamentos"
+      (click)="openDialog()"
+      (focus)="openDialog()"
+      readonly
+    />
+    <!-- {{ registerForm.controls["departments"].value | json }} -->
+
+    <label
+      for="departments"
+      [class.filled]="registerForm.get('departments')?.value"
+      >Departamentos</label
+    >
+  </div>
+
+  <div class="field mail-field">
+    <div class="input-wrapper">
+      <input
+        #focusInput
+        formControlName="mail"
+        type="text"
+        placeholder="Mail"
+        name="mail"
+      />
+      <label for="mail" [class.filled]="registerForm.get('mail')?.value"
+        >Mail</label
+      >
+    </div>
+  </div>
+
+  <button
+    #focusInput
+    [disabled]="registerForm.invalid"
+    class="button button-primary"
+  >
+    Registrarse
+  </button>
+
+  <button mat-button (click)="openDialog()">Open dialog</button>
+</form>

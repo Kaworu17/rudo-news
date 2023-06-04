@@ -1,0 +1,41 @@
+@primary: #ff005f;
+
+.departments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 35px 22px 17px;
+
+  h4 {
+    margin-bottom: 0;
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+.departments-checks-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+}
+
+mat-checkbox {
+  margin: 1px 0;
+  border-radius: 8px;
+}
+.mat-mdc-checkbox-checked {
+  background-color: @primary;
+  color: white !important;
+
+  .mdc-form-field {
+    color: white !important;
+
+    .mdc-checkbox {
+      .mdc-checkbox__background {
+        background-color: @primary !important;
+        border-color: white !important;
+        border: 1px solid currentColor;
+      }
+    }
+  }
+}

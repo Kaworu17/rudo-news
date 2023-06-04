@@ -1,0 +1,30 @@
+<section class="example-section" [formGroup]="departments">
+  <div class="departments-header">
+    <div></div>
+    <h4>Departamentos</h4>
+    <mat-icon (click)="onClose()"> {{ "close" }} </mat-icon>
+  </div>
+
+  <div class="departments-checks-list">
+    <mat-checkbox formControlName="back">Back</mat-checkbox>
+    <mat-checkbox formControlName="rrhh">RRHH</mat-checkbox>
+    <mat-checkbox formControlName="ios">iOS</mat-checkbox>
+    <mat-checkbox formControlName="android">Android</mat-checkbox>
+    <mat-checkbox formControlName="diseño">Diseño</mat-checkbox>
+    <mat-checkbox formControlName="proyectos">Proyectos</mat-checkbox>
+    <mat-checkbox formControlName="ventas">Ventas</mat-checkbox>
+    <mat-checkbox formControlName="academy">Academy</mat-checkbox>
+    <mat-checkbox formControlName="flutter">Flutter</mat-checkbox>
+    <mat-checkbox formControlName="ionic">Ionic</mat-checkbox>
+    <mat-checkbox formControlName="jp">JP</mat-checkbox>
+  </div>
+</section>
+
+<!-- <section class="example-section" [formGroup]="departments">
+  <h4>You chose:</h4>
+  {{ departments.value | json }}
+</section> -->
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onSave()">Aceptar</button>
+</div>

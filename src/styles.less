@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@main-bg: #e5e5e5;
+@main-bg: #efeded;
 @primary: #ff005f;
 @disabled: #f44b88;
+@error: #f07e3d;
+@success: #53d487;
 
 html,
 body {
@@ -23,13 +25,19 @@ form {
     position: relative;
 
     .error {
-      font-size: 14px;
+      font-size: 12px;
       color: @primary;
-      font-weight: 500;
+      font-weight: 400;
       padding: 0 30px;
-      transform: translateY(-10px);
+      color: @error;
+      transform: translateY(-20px);
+    }
+
+    .ng-invalid.ng-touched {
+      border: 1px solid @error;
     }
   }
+
   .passw-field {
     mat-icon {
       align-self: end;
@@ -65,6 +73,14 @@ form {
     max-width: 331px;
     z-index: 2;
     position: relative;
+
+    &:disabled {
+      background-color: #f2f2f2;
+
+      &::placeholder {
+        color: #d8d8d8;
+      }
+    }
   }
 
   input::placeholder {
@@ -88,7 +104,7 @@ form {
   input.ng-not-empty ~ label {
     display: block;
     color: @primary;
-    top: -55px;
+    top: -58px;
     border: none;
     z-index: 3;
   }

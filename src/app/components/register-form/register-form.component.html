@@ -4,20 +4,6 @@
   (ngSubmit)="onRegister()"
   autocomplete="off"
 >
-  <div class="field name-field">
-    <div class="input-wrapper">
-      <input
-        formControlName="name"
-        type="text"
-        placeholder="Nombre"
-        name="name"
-      />
-      <label for="name" [class.filled]="registerForm.get('name')?.value"
-        >Nombre</label
-      >
-    </div>
-  </div>
-
   <div class="field departments-field">
     <mat-icon> {{ "chevron_right" }} </mat-icon>
     <input
@@ -39,17 +25,74 @@
     >
   </div>
 
+  <div class="field name-field">
+    <input
+      formControlName="name"
+      type="text"
+      placeholder="Nombre"
+      name="name"
+    />
+    <label for="name" [class.filled]="registerForm.get('name')?.value"
+      >Nombre</label
+    >
+    <span *ngIf="isValidField('name')" class="error">{{
+      getFieldError("name")
+    }}</span>
+  </div>
+
   <div class="field mail-field">
-    <div class="input-wrapper">
-      <input
-        #focusInput
-        formControlName="mail"
-        type="text"
-        placeholder="Mail"
-        name="mail"
-      />
-      <label for="mail" [class.filled]="registerForm.get('mail')?.value"
-        >Mail</label
+    <input
+      #focusInput
+      formControlName="mail"
+      type="text"
+      placeholder="Mail"
+      name="mail"
+    />
+    <label for="mail" [class.filled]="registerForm.get('mail')?.value"
+      >Mail</label
+    >
+    <span *ngIf="isValidField('mail')" class="error">{{
+      getFieldError("mail")
+    }}</span>
+  </div>
+
+  <div class="field passw-field">
+    <mat-icon matSuffix (click)="toggleShowPassword()">
+      {{ isShowPassword ? "visibility_off" : "visibility" }}
+    </mat-icon>
+    <input
+      formControlName="password"
+      [type]="isShowPassword ? 'text' : 'password'"
+      placeholder="Password"
+    />
+
+    <label for="password" [class.filled]="registerForm.get('password')?.value"
+      >Password</label
+    >
+    <span *ngIf="isValidField('password')" class="error">{{
+      getFieldError("password")
+    }}</span>
+
+    <div class="password-checks">
+      <span [class.approved]="isMayus(registerForm.controls['password'].value)"
+        >· MAYUSCULA</span
+      >
+      <span [class.approved]="isMinus(registerForm.controls['password'].value)"
+        >· minuscula</span
+      >
+      <span
+        [class.approved]="hasLenght(registerForm.controls['password'].value)"
+        >· 8 CARÁCTERES</span
+      >
+      <span
+        [class.approved]="hasNumbers(registerForm.controls['password'].value)"
+        >· NÚMEROS</span
+      >
+      <span
+        [class.approved]="
+          hasEspecialCharacter(registerForm.controls['password'].value)
+        "
+        >· CARÁCTER ESPECIAL</span
       >
     </div>
   </div>
@@ -62,5 +105,5 @@
     Registrarse
   </button>
 
-  <button mat-button (click)="openDialog()">Open dialog</button>
+  <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
 </form>

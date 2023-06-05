@@ -17,10 +17,30 @@ export class RegisterFormComponent {
   @ViewChild('focusInput') focusInput!: ElementRef;
   @ViewChild('departmentInput') departInput!: ElementRef;
 
+  public isShowPassword: boolean = false;
+  public isDisabled: boolean = true;
   public registerForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
+    name: [
+      { value: '', disabled: this.isDisabled },
+      [Validators.required, Validators.minLength(3)],
+    ],
     departments: ['', [Validators.required]],
-    mail: ['', [Validators.required, Validators.email]],
+    mail: [
+      { value: '', disabled: this.isDisabled },
+      [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ],
+    ],
+    password: [
+      { value: '', disabled: this.isDisabled },
+      [
+        Validators.required,
+        Validators.pattern(
+          '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
+        ),
+      ],
+    ],
   });
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {}
@@ -62,6 +82,72 @@ export class RegisterFormComponent {
         });
       }
       this.focusInput.nativeElement.focus();
+      this.isInputEnabled();
     });
+  }
+
+  toggleShowPassword(): void {
+    this.isShowPassword = !this.isShowPassword;
+  }
+
+  isValidField(field: string): boolean | null {
+    return (
+      this.registerForm.controls[field]?.errors &&
+      this.registerForm.controls[field]?.touched
+    );
+  }
+
+  getFieldError(field: string): string | null {
+    if (!this.registerForm.controls[field]) return null;
+
+    console.log(this.registerForm.controls[field].value);
+    let word = this.registerForm.controls[field].value;
+
+    const error = this.registerForm.controls[field].errors || {};
+    for (const key of Object.keys(error)) {
+      switch (key) {
+        case 'required':
+          return 'Este campo no puede quedar vacío';
+        case 'email':
+          return 'Este campo no es un email';
+        case 'minlength':
+          return `Mínimo ${error['minlength'].requiredLength} caracters.`;
+        case 'pattern':
+          return 'Este campo no cumple el pattern';
+      }
+    }
+
+    return null;
+  }
+
+  isMayus(word: string): boolean {
+    return /[A-Z]/.test(word);
+  }
+
+  isMinus(word: string): boolean {
+    return /[a-z]/.test(word);
+  }
+
+  hasLenght(word: string): boolean {
+    return word.length > 7;
+  }
+
+  hasNumbers(word: string): boolean {
+    return /[0-9]/.test(word);
+  }
+  hasEspecialCharacter(word: string): boolean {
+    return /[#?!@$%^&*-]/.test(word);
+  }
+
+  isInputEnabled(): void {
+    if (this.registerForm.controls['departments'].valid) {
+      this.registerForm.controls['name'].enable();
+      this.registerForm.controls['mail'].enable();
+      this.registerForm.controls['password'].enable();
+    } else {
+      this.registerForm.controls['name'].disable();
+      this.registerForm.controls['mail'].disable();
+      this.registerForm.controls['password'].disable();
+    }
   }
 }

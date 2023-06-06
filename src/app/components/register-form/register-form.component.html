@@ -8,6 +8,7 @@
     <mat-icon> {{ "chevron_right" }} </mat-icon>
     <input
       #departmentInput
+      id="departmentID"
       formControlName="departments"
       type="text"
       placeholder="Departamentos"
@@ -19,7 +20,7 @@
     <!-- {{ registerForm.controls["departments"].value | json }} -->
 
     <label
-      for="departments"
+      for="departmentID"
       [class.filled]="registerForm.get('departments')?.value"
       >Departamentos</label
     >
@@ -31,12 +32,13 @@
   <div class="field name-field">
     <input
       #focusInput
+      id="nameID"
       formControlName="name"
       type="text"
       placeholder="Nombre"
       name="name"
     />
-    <label for="name" [class.filled]="registerForm.get('name')?.value"
+    <label for="nameID" [class.filled]="registerForm.get('name')?.value"
       >Nombre</label
     >
     <span *ngIf="isValidField('name')" class="error">{{
@@ -45,8 +47,14 @@
   </div>
 
   <div class="field mail-field">
-    <input formControlName="mail" type="text" placeholder="Mail" name="mail" />
-    <label for="mail" [class.filled]="registerForm.get('mail')?.value"
+    <input
+      id="mailID"
+      formControlName="mail"
+      type="text"
+      placeholder="Mail"
+      name="mail"
+    />
+    <label for="mailID" [class.filled]="registerForm.get('mail')?.value"
       >Mail</label
     >
     <span *ngIf="isValidField('mail')" class="error">{{
@@ -55,16 +63,21 @@
   </div>
 
   <div class="field passw-field">
-    <mat-icon matSuffix (click)="toggleShowPassword()">
+    <mat-icon
+      [class.disabled]="isIconEnabled"
+      matSuffix
+      (click)="toggleShowPassword()"
+    >
       {{ isShowPassword ? "visibility_off" : "visibility" }}
     </mat-icon>
     <input
+      id="passwordID"
       formControlName="password"
       [type]="isShowPassword ? 'text' : 'password'"
       placeholder="Password"
     />
 
-    <label for="password" [class.filled]="registerForm.get('password')?.value"
+    <label for="passwordID" [class.filled]="registerForm.get('password')?.value"
       >Password</label
     >
     <span *ngIf="isValidField('password')" class="error">{{
@@ -95,12 +108,19 @@
     </div>
   </div>
 
+  <mat-radio-group class="radio" aria-label="Select an option">
+    <mat-radio-button (change)="radioButtonChange($event)" value="true"
+      >Sí, he leído y acepto las
+      <a href="">políticas de privacidad</a></mat-radio-button
+    >
+  </mat-radio-group>
+
   <button
     #focusInput
-    [disabled]="registerForm.invalid"
+    [disabled]="registerForm.invalid || !isRadioCheck"
     class="button button-primary"
   >
-    Registrarse
+    Continuar
   </button>
 
   <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->

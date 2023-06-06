@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentsDialogComponent } from '../departments-dialog/departments-dialog.component';
+import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
   selector: 'register-form',
@@ -27,7 +28,9 @@ export class RegisterFormComponent {
     'JP',
   ];
   public isShowPassword: boolean = false;
+  public isRadioCheck: boolean = false;
   public isDisabled: boolean = true;
+  public isIconEnabled: boolean = true;
   public registerForm: FormGroup = this.fb.group({
     name: [
       { value: '', disabled: this.isDisabled },
@@ -38,7 +41,7 @@ export class RegisterFormComponent {
       { value: '', disabled: this.isDisabled },
       [
         Validators.required,
-        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$'),
       ],
     ],
     password: [
@@ -76,12 +79,13 @@ export class RegisterFormComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const selectedDepartments = Object.keys(result.departments)
-          .filter((key) => result.departments[key])
-          .map(
+        const selectedDepartments = Object.keys(result.departments).filter(
+          (key) => result.departments[key]
+        );
+        /* .map(
             (key) => key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
           )
-          .join(', ');
+          .join(', '); */
 
         const departmentsValue =
           selectedDepartments.length > 0 ? selectedDepartments : '';
@@ -153,10 +157,16 @@ export class RegisterFormComponent {
       this.registerForm.controls['name'].enable();
       this.registerForm.controls['mail'].enable();
       this.registerForm.controls['password'].enable();
+      this.isIconEnabled = false;
     } else {
       this.registerForm.controls['name'].disable();
       this.registerForm.controls['mail'].disable();
       this.registerForm.controls['password'].disable();
+      this.isIconEnabled = true;
     }
+  }
+
+  radioButtonChange(data: MatRadioChange) {
+    this.isRadioCheck = data.value;
   }
 }

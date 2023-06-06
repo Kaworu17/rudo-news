@@ -60,6 +60,17 @@ form {
     transition: all 0.6s;
   }
 
+  .radio {
+    label {
+      position: static;
+      color: black;
+    }
+  }
+
+  mat-icon + input[disabled] {
+    color: lightgray;
+  }
+
   input {
     border: none;
     border-radius: 28px;

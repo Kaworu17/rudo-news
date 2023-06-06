@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { DepartmentsDialogComponent } from './components/departments-dialog/departments-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     FormsModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

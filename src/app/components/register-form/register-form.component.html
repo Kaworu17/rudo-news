@@ -23,10 +23,14 @@
       [class.filled]="registerForm.get('departments')?.value"
       >Departamentos</label
     >
+    <span *ngIf="isValidField('departments')" class="error">{{
+      getFieldError("departments")
+    }}</span>
   </div>
 
   <div class="field name-field">
     <input
+      #focusInput
       formControlName="name"
       type="text"
       placeholder="Nombre"
@@ -41,13 +45,7 @@
   </div>
 
   <div class="field mail-field">
-    <input
-      #focusInput
-      formControlName="mail"
-      type="text"
-      placeholder="Mail"
-      name="mail"
-    />
+    <input formControlName="mail" type="text" placeholder="Mail" name="mail" />
     <label for="mail" [class.filled]="registerForm.get('mail')?.value"
       >Mail</label
     >

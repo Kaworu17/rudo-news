@@ -1,7 +1,11 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogData } from '../register-form/register-form.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'departments-dialog',
@@ -11,32 +15,35 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class DepartmentsDialogComponent {
   public selectedDepartments: string = '';
+  public importedDepartmentsList: string[] = [];
 
-  public departments: FormGroup = this.fb.group({
-    back: false,
-    rrhh: false,
-    ios: false,
-  });
+  public departments: FormGroup = this.fb.group({});
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<DepartmentsDialogComponent>
   ) {
-    console.log('datos: ', data.selectedDepartments);
-    this.departments = this.fb.group({
-      back: data.selectedDepartments.includes('back'),
-      rrhh: data.selectedDepartments.includes('rrhh'),
-      ios: data.selectedDepartments.includes('ios'),
-      android: data.selectedDepartments.includes('android'),
-      diseño: data.selectedDepartments.includes('diseño'),
-      proyectos: data.selectedDepartments.includes('proyectos'),
-      ventas: data.selectedDepartments.includes('ventas'),
-      academy: data.selectedDepartments.includes('academy'),
-      flutter: data.selectedDepartments.includes('flutter'),
-      ionic: data.selectedDepartments.includes('ionic'),
-      jp: data.selectedDepartments.includes('jp'),
+    this.importedDepartmentsList = data.importedDepartments;
+    console.log('selectedDepartments: ', data.selectedDepartments);
+
+    this.añadirGrupos();
+  }
+
+  añadirGrupos() {
+    this.importedDepartmentsList.forEach((element) => {
+      /* console.log('element: ', element); */
+
+      this.departments.addControl(
+        element,
+        new FormControl(
+          this.data.selectedDepartments.includes(element),
+          Validators.required
+        )
+      );
     });
+
+    console.log('departments: ', this.departments.value);
   }
 
   onSave(): void {

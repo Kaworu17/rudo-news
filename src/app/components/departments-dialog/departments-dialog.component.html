@@ -6,17 +6,11 @@
   </div>
 
   <div class="departments-checks-list">
-    <mat-checkbox formControlName="back">Back</mat-checkbox>
-    <mat-checkbox formControlName="rrhh">RRHH</mat-checkbox>
-    <mat-checkbox formControlName="ios">iOS</mat-checkbox>
-    <mat-checkbox formControlName="android">Android</mat-checkbox>
-    <mat-checkbox formControlName="diseño">Diseño</mat-checkbox>
-    <mat-checkbox formControlName="proyectos">Proyectos</mat-checkbox>
-    <mat-checkbox formControlName="ventas">Ventas</mat-checkbox>
-    <mat-checkbox formControlName="academy">Academy</mat-checkbox>
-    <mat-checkbox formControlName="flutter">Flutter</mat-checkbox>
-    <mat-checkbox formControlName="ionic">Ionic</mat-checkbox>
-    <mat-checkbox formControlName="jp">JP</mat-checkbox>
+    <mat-checkbox
+      *ngFor="let department of importedDepartmentsList"
+      formControlName="{{ department }}"
+      >{{ department }}</mat-checkbox
+    >
   </div>
 </section>
 

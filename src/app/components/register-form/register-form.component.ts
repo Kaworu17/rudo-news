@@ -4,10 +4,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentsDialogComponent } from '../departments-dialog/departments-dialog.component';
 
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
-
 @Component({
   selector: 'register-form',
   templateUrl: './register-form.component.html',
@@ -17,6 +13,19 @@ export class RegisterFormComponent {
   @ViewChild('focusInput') focusInput!: ElementRef;
   @ViewChild('departmentInput') departInput!: ElementRef;
 
+  public arrayTestDepartments: string[] = [
+    'Back',
+    'RRHH',
+    'Ios',
+    'Android',
+    'Diseño',
+    'Proyectos',
+    'Ventas',
+    'Academy',
+    'Flutter',
+    'Ionic',
+    'JP',
+  ];
   public isShowPassword: boolean = false;
   public isDisabled: boolean = true;
   public registerForm: FormGroup = this.fb.group({
@@ -61,18 +70,18 @@ export class RegisterFormComponent {
       panelClass: 'custom-dialog',
       data: {
         selectedDepartments: this.registerForm.value.departments,
+        importedDepartments: this.arrayTestDepartments,
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const selectedDepartments = Object.keys(result.departments).filter(
-          (key) => result.departments[key]
-        );
-        /* .map(
+        const selectedDepartments = Object.keys(result.departments)
+          .filter((key) => result.departments[key])
+          .map(
             (key) => key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
           )
-          .join(', '); */
+          .join(', ');
 
         const departmentsValue =
           selectedDepartments.length > 0 ? selectedDepartments : '';
@@ -100,7 +109,7 @@ export class RegisterFormComponent {
   getFieldError(field: string): string | null {
     if (!this.registerForm.controls[field]) return null;
 
-    console.log(this.registerForm.controls[field].value);
+    /*  console.log(this.registerForm.controls[field].value); */
     let word = this.registerForm.controls[field].value;
 
     const error = this.registerForm.controls[field].errors || {};

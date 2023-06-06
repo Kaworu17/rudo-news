@@ -27,10 +27,10 @@ export class DepartmentsDialogComponent {
     this.importedDepartmentsList = data.importedDepartments;
     console.log('selectedDepartments: ', data.selectedDepartments);
 
-    this.añadirGrupos();
+    this.addFormGroupElements();
   }
 
-  añadirGrupos() {
+  addFormGroupElements() {
     this.importedDepartmentsList.forEach((element) => {
       /* console.log('element: ', element); */
 

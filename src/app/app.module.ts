@@ -18,6 +18,10 @@ import { DepartmentsDialogComponent } from './components/departments-dialog/depa
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { HeaderComponent } from './components/header/header.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ForgottenPasswordComponent } from './pages/forgotten-password/forgotten-password.component';
+import { ForgottenPasswordFormComponent } from './components/forgotten-password-form/forgotten-password-form.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { MatRadioModule } from '@angular/material/radio';
     RegisterComponent,
     RegisterFormComponent,
     DepartmentsDialogComponent,
+    HeaderComponent,
+    BreadcrumbComponent,
+    ForgottenPasswordComponent,
+    ForgottenPasswordFormComponent,
   ],
   imports: [
     BrowserModule,

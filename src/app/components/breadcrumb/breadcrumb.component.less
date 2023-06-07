@@ -1,0 +1,28 @@
+.breadcrumb-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+  &-icon {
+    margin: 0 20px;
+
+    &:hover {
+      background-color: lightgrey;
+      border-radius: 11px;
+      cursor: pointer;
+    }
+  }
+
+  span {
+    padding-right: 5px;
+
+    &:nth-child(even):hover:not(:last-child) {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    &:last-child {
+      font-weight: bold;
+    }
+  }
+}

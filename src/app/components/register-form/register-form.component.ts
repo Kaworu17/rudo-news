@@ -94,8 +94,8 @@ export class RegisterFormComponent {
           departments: departmentsValue,
         });
       }
-      this.focusInput.nativeElement.focus();
       this.isInputEnabled();
+      this.focusInput.nativeElement.focus();
     });
   }
 

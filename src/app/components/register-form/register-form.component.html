@@ -24,9 +24,11 @@
       [class.filled]="registerForm.get('departments')?.value"
       >Departamentos</label
     >
-    <span *ngIf="isValidField('departments')" class="error">{{
-      getFieldError("departments")
-    }}</span>
+    <span
+      *ngIf="isValidFielComprobation(registerForm, 'departments')"
+      class="error"
+      >{{ getFieldError(registerForm, "departments") }}</span
+    >
   </div>
 
   <div class="field name-field">
@@ -41,8 +43,8 @@
     <label for="nameID" [class.filled]="registerForm.get('name')?.value"
       >Nombre</label
     >
-    <span *ngIf="isValidField('name')" class="error">{{
-      getFieldError("name")
+    <span *ngIf="isValidFielComprobation(registerForm, 'name')" class="error">{{
+      getFieldError(registerForm, "name")
     }}</span>
   </div>
 
@@ -57,8 +59,8 @@
     <label for="mailID" [class.filled]="registerForm.get('mail')?.value"
       >Mail</label
     >
-    <span *ngIf="isValidField('mail')" class="error">{{
-      getFieldError("mail")
+    <span *ngIf="isValidFielComprobation(registerForm, 'mail')" class="error">{{
+      getFieldError(registerForm, "mail")
     }}</span>
   </div>
 
@@ -80,9 +82,11 @@
     <label for="passwordID" [class.filled]="registerForm.get('password')?.value"
       >Password</label
     >
-    <span *ngIf="isValidField('password')" class="error">{{
-      getFieldError("password")
-    }}</span>
+    <span
+      *ngIf="isValidFielComprobation(registerForm, 'password')"
+      class="error"
+      >{{ getFieldError(registerForm, "password") }}</span
+    >
 
     <div class="password-checks">
       <span [class.approved]="isMayus(registerForm.controls['password'].value)"

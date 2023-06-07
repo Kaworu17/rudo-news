@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { isValidFielComprobation, getFieldError } from 'src/app/utils/utils';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+} from '@angular/material/dialog';
+import { ForgottenPasswordDialogComponent } from '../forgotten-password-dialog/forgotten-password-dialog.component';
 
 @Component({
   selector: 'forgotten-password-form',
@@ -7,6 +14,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./forgotten-password-form.component.less'],
 })
 export class ForgottenPasswordFormComponent {
+  public isValidFielComprobation = isValidFielComprobation;
+  public getFieldError = getFieldError;
+  constructor(public dialog: MatDialog) {}
+
   public forgottenPasswordForm: FormGroup = new FormGroup({
     mail: new FormControl('', [
       Validators.required,
@@ -22,33 +33,12 @@ export class ForgottenPasswordFormComponent {
     }
   }
 
-  isValidField(field: string): boolean | null {
-    return (
-      this.forgottenPasswordForm.controls[field]?.errors &&
-      this.forgottenPasswordForm.controls[field]?.touched
-    );
-  }
-
-  getFieldError(field: string): string | null {
-    if (!this.forgottenPasswordForm.controls[field]) return null;
-
-    /*  console.log(this.registerForm.controls[field].value); */
-    let word = this.forgottenPasswordForm.controls[field].value;
-
-    const error = this.forgottenPasswordForm.controls[field].errors || {};
-    for (const key of Object.keys(error)) {
-      switch (key) {
-        case 'required':
-          return 'Este campo no puede quedar vacío';
-        case 'email':
-          return 'Este campo no es un email';
-        case 'minlength':
-          return `Mínimo ${error['minlength'].requiredLength} caracters.`;
-        case 'pattern':
-          return 'Este campo no cumple el pattern';
-      }
-    }
-
-    return null;
+  openDialog() {
+    this.dialog.open(ForgottenPasswordDialogComponent, {
+      width: '400px',
+      panelClass: 'custom-dialog',
+      /* data: this.forgottenPasswordForm.value.mail, */
+      data: this.forgottenPasswordForm.controls['mail'].value,
+    });
   }
 }

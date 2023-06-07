@@ -4,6 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentsDialogComponent } from '../departments-dialog/departments-dialog.component';
 import { MatRadioChange } from '@angular/material/radio';
+import { isValidFielComprobation, getFieldError } from 'src/app/utils/utils';
 
 @Component({
   selector: 'register-form',
@@ -13,6 +14,9 @@ import { MatRadioChange } from '@angular/material/radio';
 export class RegisterFormComponent {
   @ViewChild('focusInput') focusInput!: ElementRef;
   @ViewChild('departmentInput') departInput!: ElementRef;
+
+  public isValidFielComprobation = isValidFielComprobation;
+  public getFieldError = getFieldError;
 
   public arrayTestDepartments: string[] = [
     'Back',
@@ -101,36 +105,6 @@ export class RegisterFormComponent {
 
   toggleShowPassword(): void {
     this.isShowPassword = !this.isShowPassword;
-  }
-
-  isValidField(field: string): boolean | null {
-    return (
-      this.registerForm.controls[field]?.errors &&
-      this.registerForm.controls[field]?.touched
-    );
-  }
-
-  getFieldError(field: string): string | null {
-    if (!this.registerForm.controls[field]) return null;
-
-    /*  console.log(this.registerForm.controls[field].value); */
-    let word = this.registerForm.controls[field].value;
-
-    const error = this.registerForm.controls[field].errors || {};
-    for (const key of Object.keys(error)) {
-      switch (key) {
-        case 'required':
-          return 'Este campo no puede quedar vacío';
-        case 'email':
-          return 'Este campo no es un email';
-        case 'minlength':
-          return `Mínimo ${error['minlength'].requiredLength} caracters.`;
-        case 'pattern':
-          return 'Este campo no cumple el pattern';
-      }
-    }
-
-    return null;
   }
 
   isMayus(word: string): boolean {

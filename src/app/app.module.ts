@@ -22,6 +22,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ForgottenPasswordComponent } from './pages/forgotten-password/forgotten-password.component';
 import { ForgottenPasswordFormComponent } from './components/forgotten-password-form/forgotten-password-form.component';
+import { ForgottenPasswordDialogComponent } from './components/forgotten-password-dialog/forgotten-password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ForgottenPasswordFormComponent } from './components/forgotten-password-
     BreadcrumbComponent,
     ForgottenPasswordComponent,
     ForgottenPasswordFormComponent,
+    ForgottenPasswordDialogComponent,
   ],
   imports: [
     BrowserModule,

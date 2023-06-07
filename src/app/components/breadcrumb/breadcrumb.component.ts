@@ -12,7 +12,6 @@ export class BreadcrumbComponent implements OnInit {
   constructor(private router: Router) {}
   ngOnInit(): void {
     this.href = this.router.url;
-    console.log(this.router.url);
 
     switch (this.router.url) {
       case '/register':

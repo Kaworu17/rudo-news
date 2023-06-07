@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { isValidFielComprobation, getFieldError } from 'src/app/utils/utils';
 
 @Component({
   selector: 'login-form',
@@ -7,6 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.less'],
 })
 export class LoginFormComponent {
+  public isValidFielComprobation = isValidFielComprobation;
+  public getFieldError = getFieldError;
   public loginForm: FormGroup = new FormGroup({
     mail: new FormControl('', [
       Validators.required,
@@ -26,33 +29,6 @@ export class LoginFormComponent {
     } else {
       this.loginForm.markAllAsTouched();
     }
-  }
-
-  isValidField(field: string): boolean | null {
-    return (
-      this.loginForm.controls[field]?.errors &&
-      this.loginForm.controls[field]?.touched
-    );
-  }
-
-  getFieldError(field: string): string | null {
-    if (!this.loginForm.controls[field]) return null;
-
-    const error = this.loginForm.controls[field].errors || {};
-    for (const key of Object.keys(error)) {
-      switch (key) {
-        case 'required':
-          return 'Este campo es requerido';
-        case 'email':
-          return 'Este campo no es un email';
-        case 'pattern':
-          return 'Este campo no cumple el pattern';
-        case 'minlength':
-          return `Mínimo ${error['minlength'].requiredLength} caracters.`;
-      }
-    }
-
-    return null;
   }
 
   toggleShowPassword(): void {

@@ -26,6 +26,10 @@ import { ForgottenPasswordDialogComponent } from './components/forgotten-passwor
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { NewPasswordFormComponent } from './components/new-password-form/new-password-form.component';
 import { NewPasswordDialogComponent } from './components/new-password-dialog/new-password-dialog.component';
+import { NewsComponent } from './pages/news/news.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import { NewPasswordDialogComponent } from './components/new-password-dialog/new
     NewPasswordComponent,
     NewPasswordFormComponent,
     NewPasswordDialogComponent,
+    NewsComponent,
+    ProfileComponent,
+    FavoritesComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

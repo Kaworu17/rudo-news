@@ -9,3 +9,40 @@
     height: 70px;
   }
 }
+
+.header-expanded {
+  height: 93px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(186, 186, 186, 0.2);
+
+  img {
+    height: 70px;
+    margin-left: 50px;
+  }
+
+  .nav-bar {
+    margin-right: 50px;
+
+    a {
+      font-size: 20px;
+      padding: 0 60px;
+      text-decoration: none;
+      color: #5e6270;
+      @media screen and (max-width: 752px) {
+        padding: 0 30px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        color: black;
+      }
+    }
+
+    .active {
+      font-weight: bold;
+      color: black;
+    }
+  }
+}

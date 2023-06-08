@@ -35,7 +35,11 @@
 
   <a routerLink="/forgotten">¿Has olvidado la contraseña?</a>
   <div>
-    <button [disabled]="loginForm.invalid" class="button button-primary">
+    <button
+      [disabled]="loginForm.invalid"
+      routerLink="/news"
+      class="button button-primary"
+    >
       Iniciar sesión
     </button>
     <button routerLink="/register" class="button button-secondary">

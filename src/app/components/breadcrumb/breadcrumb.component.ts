@@ -20,6 +20,9 @@ export class BreadcrumbComponent implements OnInit {
       case '/forgotten-password':
         this.href = 'Contraseña olvidada';
         break;
+      case '/new-password':
+        this.href = 'Nueva contraseña';
+        break;
     }
   }
 }

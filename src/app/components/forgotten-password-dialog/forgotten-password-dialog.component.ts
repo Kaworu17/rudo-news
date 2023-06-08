@@ -25,9 +25,6 @@ export class ForgottenPasswordDialogComponent {
     if (this.mailDB.includes(this.mailGiven)) {
       return true;
     } else return false;
-
-    /* console.log('Prueba; ', this.test);
-    console.log('Prueba2; ', this.mailDB); */
   }
 
   onSave(): void {

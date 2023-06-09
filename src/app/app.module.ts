@@ -30,6 +30,8 @@ import { NewsComponent } from './pages/news/news.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { CardComponent } from './components/card/card.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { CardComponent } from './components/card/card.component';
     ProfileComponent,
     FavoritesComponent,
     CardComponent,
+    SearchBarComponent,
+    SearchFilterPipe,
   ],
   imports: [
     BrowserModule,

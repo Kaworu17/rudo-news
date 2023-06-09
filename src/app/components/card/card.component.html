@@ -1,19 +1,23 @@
 <div class="card-container">
   <div class="img-gradient">
-    <img src="https://rickandmortyapi.com/api/character/avatar/265.jpeg" />
-    <h2 class="title">TITLE!</h2>
+    <img src="{{ news.img }}" />
+    <h2 class="title">{{ news.title }}</h2>
   </div>
-  <div class="subtitle"><span>Nueva oficina</span><span>22-11-2021</span></div>
+  <div class="subtitle">
+    <span>{{ news.subtitle }}</span
+    ><span>{{ news.date }}</span>
+  </div>
   <div class="content">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam massa elit,
-    consectetur vitar lorem sed.
+    {{ news.content }}
   </div>
   <hr />
   <div class="footer">
-    <div class="tags"><span>Ocio</span></div>
+    <div class="tags">
+      <span *ngFor="let tag of news.tags">{{ tag }}</span>
+    </div>
     <div class="icons">
-      <mat-icon>
-        {{ "favorite_border" }}
+      <mat-icon (click)="isFavorite()">
+        {{ favorite ? "favorite" : "favorite_border" }}
       </mat-icon>
       <mat-icon>
         {{ "share" }}

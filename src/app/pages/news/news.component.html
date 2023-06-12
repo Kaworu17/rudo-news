@@ -1,8 +1,14 @@
 <header [expanded]="true"></header>
-<search-bar (newItemEvent)="getSearchNewsText($event)"></search-bar>
+<search-bar
+  (newItemEvent)="getSearchNewsText($event)"
+  (newTagsEvent)="getTags($event)"
+></search-bar>
 <div class="cards-container">
   <card
-    *ngFor="let news of newsData | searchFilter : searchTerm"
+    [routerLink]="['/news', news.title]"
+    *ngFor="
+      let news of newsData | searchFilter : searchTerm : separatedTagsString
+    "
     [news]="news"
   ></card>
 </div>

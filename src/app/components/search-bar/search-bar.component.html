@@ -1,5 +1,14 @@
 <div class="search-bar-container">
-  <span>search-bar works!</span>
+  <div class="tags-bar">
+    <span>Filtrar por:</span>
+    <button
+      (click)="isButtonActive(tag)"
+      *ngFor="let tag of separatedTags"
+      [ngClass]="{ active: buttonStates[tag] }"
+    >
+      {{ tag }}
+    </button>
+  </div>
 
   <div class="search-input">
     <button id="searchSubmit" name="searchSubmit">

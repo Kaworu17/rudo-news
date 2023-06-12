@@ -27,6 +27,16 @@ export class BackendDataService {
       tags: ['Ocio', 'Cosa2'],
       date: '12-10-2022',
     },
+    {
+      id: 3,
+      img: 'https://rickandmortyapi.com/api/character/avatar/267.jpeg',
+      title: 'Rock Sanchez3!',
+      subtitle: 'Nueva oficina3',
+      content:
+        '2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam massa elit, consectetur vitar lorem sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam massa elit, consectetur vitar lorem sed.',
+      tags: ['Sports', 'Cosa2'],
+      date: '12-10-2022',
+    },
   ];
 
   constructor() {}

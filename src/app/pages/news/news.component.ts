@@ -9,12 +9,15 @@ import { TestData } from 'src/app/models/test-data.model';
 })
 export class NewsComponent implements OnInit {
   searchTerm: string = '';
+  separatedTags: string[] = [];
+  separatedTagsString: string = this.separatedTags.toString();
   constructor(private backendDataService: BackendDataService) {}
 
   newsData: TestData[] = [];
 
   ngOnInit(): void {
     this.searchNews();
+    this.getTags(this.separatedTags);
   }
 
   searchNews() {
@@ -24,7 +27,11 @@ export class NewsComponent implements OnInit {
   }
 
   getSearchNewsText(value: string) {
-    console.log('padre text:', value);
     this.searchTerm = value;
+  }
+
+  getTags(value: string[]) {
+    this.separatedTags = value;
+    this.separatedTagsString = this.separatedTags.toString();
   }
 }

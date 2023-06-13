@@ -34,6 +34,10 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { NewsDescriptionComponent } from './pages/news-description/news-description.component';
 import { NewsDetailComponent } from './components/news-detail/news-detail.component';
+import { LegalTextsComponent } from './components/legal-texts/legal-texts.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { TermsComponent } from './pages/terms/terms.component';
+import { PolicysComponent } from './pages/policys/policys.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +63,10 @@ import { NewsDetailComponent } from './components/news-detail/news-detail.compon
     SearchFilterPipe,
     NewsDescriptionComponent,
     NewsDetailComponent,
+    LegalTextsComponent,
+    FaqComponent,
+    TermsComponent,
+    PolicysComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,9 @@ import { NewsComponent } from './pages/news/news.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NewsDescriptionComponent } from './pages/news-description/news-description.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { TermsComponent } from './pages/terms/terms.component';
+import { PolicysComponent } from './pages/policys/policys.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'news/:title', component: NewsDescriptionComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'terms', component: TermsComponent },
+  { path: 'policys', component: PolicysComponent },
   { path: '**', redirectTo: 'login' },
 ];
 

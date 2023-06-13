@@ -29,6 +29,8 @@ export function getFieldError(
         return `Mínimo ${error['minlength'].requiredLength} caracters.`;
       case 'pattern':
         return 'Este campo no cumple el pattern';
+      case 'maxlength':
+        return `Máximo ${error['maxlength'].requiredLength} caracters.`;
     }
   }
 

@@ -32,6 +32,8 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { CardComponent } from './components/card/card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { NewsDescriptionComponent } from './pages/news-description/news-description.component';
+import { NewsDetailComponent } from './components/news-detail/news-detail.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
     CardComponent,
     SearchBarComponent,
     SearchFilterPipe,
+    NewsDescriptionComponent,
+    NewsDetailComponent,
   ],
   imports: [
     BrowserModule,

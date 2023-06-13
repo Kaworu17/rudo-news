@@ -7,6 +7,7 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
 import { NewsComponent } from './pages/news/news.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { NewsDescriptionComponent } from './pages/news-description/news-description.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'forgotten', redirectTo: 'forgotten-password' },
   { path: 'new-password', component: NewPasswordComponent },
   { path: 'news', component: NewsComponent },
+  { path: 'news/:title', component: NewsDescriptionComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: 'login' },

@@ -1,0 +1,85 @@
+<div class="news-container">
+  <mat-icon routerLink="/news" class="go-back">
+    {{ "chevron_left" }}
+  </mat-icon>
+  <h2>{{ newsDetail.title }}</h2>
+  <div class="img-container">
+    <img src="{{ newsDetail.img }}" />
+  </div>
+
+  <div class="news-container-text">
+    <div class="subtitle">
+      <span>{{ newsDetail.subtitle }}</span
+      ><span>{{ newsDetail.date }}</span>
+    </div>
+    <div class="content">
+      {{ newsDetail.content }}
+    </div>
+    <div class="body">
+      {{ newsDetail.body }}
+    </div>
+    <div class="comments-container">
+      <hr />
+      <div class="comments-header">
+        <div class="comments-header-profile">
+          <img src="./assets/images/coment-picture.png" />
+          <div class="comments-header-profile-text">
+            <span class="comments-header-profile-text-name"
+              >Arturo Salcedo</span
+            >
+            <span class="comments-header-profile-text-data"
+              >Diseño, Ventas, Ionic</span
+            >
+          </div>
+        </div>
+        <div class="comments-header-date">
+          <span>Hace 3 días</span>
+        </div>
+      </div>
+      <div class="comments-body">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pretium
+          porttitor orci, ut sed proin id morbi. Ac tincidunt donec imperdiet
+          venenatis aliquet ipsum. Facilisi iaculis scelerisque sit vitae lectus
+          dis turpis ac cum. Facilisi iaculis scelerisque sit vitae lectus dis
+          turpis ac cum.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <form
+    class="comment-form"
+    [formGroup]="commentForm"
+    (ngSubmit)="onComment()"
+    autocomplete="off"
+  >
+    <div class="field comment-field">
+      <mat-icon
+        class="material-icons-outlined"
+        (click)="onComment()"
+        [ngClass]="{ red: commentForm.get('comment')?.value != '' }"
+      >
+        {{ "send" }}
+      </mat-icon>
+
+      <input
+        formControlName="comment"
+        #comment
+        type="text"
+        placeholder="Escribe tu comentario"
+        (keyup)="toggleShowSend()"
+      />
+
+      <label for="comment" [class.filled]="commentForm.get('comment')?.value"
+        >Escribe tu comentario</label
+      >
+      <mat-hint align="end">{{ comment.value.length }} / 250</mat-hint>
+      <span
+        *ngIf="isValidFielComprobation(commentForm, 'comment')"
+        class="error"
+        >{{ getFieldError(commentForm, "comment") }}</span
+      >
+    </div>
+  </form>
+</div>

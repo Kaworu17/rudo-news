@@ -1,0 +1,137 @@
+@primary: #ff005f;
+
+.news-container {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px auto;
+  padding: 0 25px;
+
+  &-text {
+  }
+
+  .go-back {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+
+    &:hover {
+      background-color: lightgrey;
+      border-radius: 11px;
+      cursor: pointer;
+    }
+  }
+
+  .img-container {
+    width: 100%;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+  }
+
+  .subtitle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    margin-bottom: 5px;
+  }
+
+  .content {
+    color: #5e6270;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .comments-container {
+    .comments-header {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      &-profile {
+        display: flex;
+
+        img {
+          margin-right: 17px;
+        }
+
+        &-text {
+          display: flex;
+          flex-direction: column;
+
+          &-name {
+            font-size: 16px;
+          }
+
+          &-data {
+            color: rgba(0, 0, 0, 0.6);
+          }
+        }
+      }
+
+      &-date {
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
+  form {
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    .field {
+      margin-top: 20px;
+      background-color: white;
+      border-top: 1px solid lightgrey;
+
+      mat-icon {
+        position: ABSOLUTE;
+        right: 45px;
+        top: 30px;
+        z-index: 3;
+        color: lightgray;
+      }
+
+      .error {
+        transform: translateY(-40px);
+      }
+
+      .red {
+        color: red;
+      }
+      input {
+        max-width: 680px;
+        padding-right: 60px;
+        background: rgba(51, 51, 51, 0.06);
+        margin-top: 15px;
+      }
+
+      mat-hint {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 40px;
+        transform: translateY(-20px);
+      }
+
+      label {
+        top: -42px;
+        color: #f3f3f3;
+      }
+
+      .filled,
+      input:focus ~ label,
+      input.ng-not-empty ~ label {
+        display: block;
+        color: @primary;
+        top: -58px;
+        border: none;
+        z-index: 3;
+      }
+    }
+  }
+}

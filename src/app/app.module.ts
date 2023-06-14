@@ -38,6 +38,9 @@ import { LegalTextsComponent } from './components/legal-texts/legal-texts.compon
 import { FaqComponent } from './pages/faq/faq.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { PolicysComponent } from './pages/policys/policys.component';
+import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
+import { ProfileEditFormComponent } from './components/profile-edit-form/profile-edit-form.component';
+import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,9 @@ import { PolicysComponent } from './pages/policys/policys.component';
     FaqComponent,
     TermsComponent,
     PolicysComponent,
+    ProfileEditComponent,
+    ProfileEditFormComponent,
+    GenericDialogComponent,
   ],
   imports: [
     BrowserModule,

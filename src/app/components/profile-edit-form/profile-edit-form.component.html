@@ -1,0 +1,131 @@
+<form
+  class="register-form"
+  [formGroup]="editProfileForm"
+  (ngSubmit)="onSaveChanges()"
+  autocomplete="off"
+>
+  <div class="field departments-field">
+    <mat-icon> {{ "chevron_right" }} </mat-icon>
+    <input
+      #departmentInput
+      id="departmentID"
+      formControlName="departments"
+      type="text"
+      placeholder="Departamentos"
+      name="Departamentos"
+      (click)="openDialog()"
+      (focus)="openDialog()"
+      readonly
+    />
+    <!-- {{ registerForm.controls["departments"].value | json }} -->
+
+    <label
+      for="departmentID"
+      [class.filled]="editProfileForm.get('departments')?.value"
+      >Departamentos</label
+    >
+    <span
+      *ngIf="isValidFielComprobation(editProfileForm, 'departments')"
+      class="error"
+      >{{ getFieldError(editProfileForm, "departments") }}</span
+    >
+  </div>
+
+  <div class="field name-field">
+    <input
+      #focusInput
+      id="nameID"
+      formControlName="name"
+      type="text"
+      placeholder="Nombre"
+      name="name"
+    />
+    <label for="nameID" [class.filled]="editProfileForm.get('name')?.value"
+      >Nombre</label
+    >
+    <span
+      *ngIf="isValidFielComprobation(editProfileForm, 'name')"
+      class="error"
+      >{{ getFieldError(editProfileForm, "name") }}</span
+    >
+  </div>
+
+  <div class="field mail-field">
+    <input
+      id="mailID"
+      formControlName="mail"
+      type="text"
+      placeholder="Mail"
+      name="mail"
+    />
+    <label for="mailID" [class.filled]="editProfileForm.get('mail')?.value"
+      >Mail</label
+    >
+    <span
+      *ngIf="isValidFielComprobation(editProfileForm, 'mail')"
+      class="error"
+      >{{ getFieldError(editProfileForm, "mail") }}</span
+    >
+  </div>
+
+  <div class="field passw-field">
+    <mat-icon
+      [class.disabled]="isIconEnabled"
+      matSuffix
+      (click)="toggleShowPassword()"
+    >
+      {{ isShowPassword ? "visibility_off" : "visibility" }}
+    </mat-icon>
+    <input
+      id="passwordID"
+      formControlName="password"
+      [type]="isShowPassword ? 'text' : 'password'"
+      placeholder="Password"
+    />
+
+    <label
+      for="passwordID"
+      [class.filled]="editProfileForm.get('password')?.value"
+      >Password</label
+    >
+    <span
+      *ngIf="isValidFielComprobation(editProfileForm, 'password')"
+      class="error"
+      >{{ getFieldError(editProfileForm, "password") }}</span
+    >
+
+    <!-- <div class="password-checks">
+      <span [class.approved]="isMayus(registerForm.controls['password'].value)"
+        >· MAYUSCULA</span
+      >
+      <span [class.approved]="isMinus(registerForm.controls['password'].value)"
+        >· minuscula</span
+      >
+      <span
+        [class.approved]="hasLenght(registerForm.controls['password'].value)"
+        >· 8 CARÁCTERES</span
+      >
+      <span
+        [class.approved]="hasNumbers(registerForm.controls['password'].value)"
+        >· NÚMEROS</span
+      >
+      <span
+        [class.approved]="
+          hasEspecialCharacter(registerForm.controls['password'].value)
+        "
+        >· CARÁCTER ESPECIAL</span
+      >
+    </div> -->
+  </div>
+
+  <button
+    #focusInput
+    [disabled]="editProfileForm.invalid"
+    class="button button-primary"
+    (click)="openGenericDialog()"
+  >
+    Guardar Cambios
+  </button>
+
+  <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
+</form>

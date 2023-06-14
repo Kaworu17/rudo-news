@@ -11,6 +11,7 @@ import { NewsDescriptionComponent } from './pages/news-description/news-descript
 import { FaqComponent } from './pages/faq/faq.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { PolicysComponent } from './pages/policys/policys.component';
+import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,9 +23,10 @@ const routes: Routes = [
   { path: 'news/:title', component: NewsDescriptionComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'faq', component: FaqComponent },
-  { path: 'terms', component: TermsComponent },
-  { path: 'policys', component: PolicysComponent },
+  { path: 'profile/faq', component: FaqComponent },
+  { path: 'profile/terms', component: TermsComponent },
+  { path: 'profile/policys', component: PolicysComponent },
+  { path: 'profile/edit', component: ProfileEditComponent },
   { path: '**', redirectTo: 'login' },
 ];
 

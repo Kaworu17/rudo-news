@@ -1,0 +1,16 @@
+<ng-container *ngIf="data.titleText"
+  ><h2>{{ data.titleText }}</h2></ng-container
+>
+
+<p>{{ data.testText }}</p>
+
+<div class="buttons-container" mat-dialog-actions>
+  <button class="dialog-confirm-button" mat-button (click)="onSave()">
+    Aceptar
+  </button>
+  <ng-container *ngIf="data.cancel"
+    ><button class="dialog-cancel-button" mat-button (click)="onSave()">
+      Cancelar
+    </button></ng-container
+  >
+</div>

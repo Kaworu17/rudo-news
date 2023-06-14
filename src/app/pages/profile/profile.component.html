@@ -1,8 +1,25 @@
 <header [expanded]="true"></header>
-<p>profile works!</p>
 
-<button>Editar Perfil</button>
-<button routerLink="/faq">FAQ</button>
-<button routerLink="/terms">Términos y condiciones</button>
-<button routerLink="/policys">Politicas de privacidad</button>
-<button>Cerrar Sesion</button>
+<div class="buttons-wrapper">
+  <div class="buttons-container">
+    <div class="profile-name">
+      <span>Jordi Miguel Aguado</span><span>jma26@rudo.es</span>
+    </div>
+    <button routerLink="/profile/edit">
+      Editar Perfil <mat-icon>{{ "arrow_forward_ios" }}</mat-icon>
+    </button>
+    <button routerLink="/profile/faq">
+      FAQ <mat-icon>{{ "arrow_forward_ios" }}</mat-icon>
+    </button>
+    <button routerLink="/profile/terms">
+      Términos y condiciones <mat-icon>{{ "arrow_forward_ios" }}</mat-icon>
+    </button>
+    <button routerLink="/profile/policys">
+      Politicas de privacidad <mat-icon>{{ "arrow_forward_ios" }}</mat-icon>
+    </button>
+    <button (click)="openGenericDialog()">
+      <mat-icon>{{ "logout" }}</mat-icon
+      >Cerrar Sesion
+    </button>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+@error: #f07e3d;
+@success: #53d487;
+
+.register-form {
+  max-width: 398px;
+  width: 100%;
+
+  .departments-field {
+    position: relative;
+    input {
+      padding-right: 50px;
+      text-overflow: ellipsis;
+    }
+
+    mat-icon {
+      align-self: end;
+      position: relative;
+      right: 40px;
+      bottom: -40px;
+      z-index: 3;
+      margin-top: -25px;
+    }
+  }
+
+  .password-checks {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    span {
+      width: 44%;
+      padding-right: 10px;
+      padding-left: 10px;
+      padding-bottom: 20px;
+      color: #9d9fa7;
+    }
+
+    .approved {
+      color: @success;
+    }
+  }
+
+  .radio {
+    padding-right: 10px;
+    padding-left: 10px;
+
+    a {
+      color: blue;
+      font-size: 12px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .disabled {
+    color: rgb(170, 170, 170);
+  }
+}

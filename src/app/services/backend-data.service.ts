@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { TestData } from '../models/test-data.model';
 
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -42,9 +44,18 @@ export class BackendDataService {
     },
   ];
 
-  constructor() {}
+  constructor(private db: AngularFireDatabase) {}
 
   public getData(): Observable<TestData[]> {
     return of(this.testData);
+  }
+
+  async callDb() {
+    this.db
+      .list('/news')
+      .valueChanges()
+      .subscribe((data) => {
+        console.log('result from db', data);
+      });
   }
 }

@@ -1,13 +1,22 @@
 <div class="search-bar-container">
   <div class="tags-bar">
-    <span>Filtrar por:</span>
-    <button
+    <span class="tags-bar-text">Filtrar por:</span>
+    <!-- <button
       (click)="isButtonActive(tag)"
       *ngFor="let tag of separatedTags"
       [ngClass]="{ active: buttonStates[tag] }"
     >
       {{ tag }}
-    </button>
+    </button> -->
+
+    <mat-chip-option
+      color="accent"
+      (click)="isButtonActive(tag)"
+      *ngFor="let tag of separatedTags"
+      [class.mdc-evolution-chip--selected]="buttonStates[tag]"
+      [ngClass]="{ active: buttonStates[tag] }"
+      >{{ tag }}</mat-chip-option
+    >
   </div>
 
   <div class="search-input">
@@ -23,7 +32,7 @@
       id="searchInput"
       type="text"
       name="searchInput"
-      placeholder="Buscar"
+      placeholder="Buscar..."
       value=""
       [(ngModel)]="searchTerm"
       (keyup)="searchNewsText(searchTerm)"

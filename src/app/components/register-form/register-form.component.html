@@ -27,7 +27,8 @@
     <span
       *ngIf="isValidFielComprobation(registerForm, 'departments')"
       class="error"
-      >{{ getFieldError(registerForm, "departments") }}</span
+      >{{ getFieldError(registerForm, "departments")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
     >
   </div>
 
@@ -43,9 +44,10 @@
     <label for="nameID" [class.filled]="registerForm.get('name')?.value"
       >Nombre</label
     >
-    <span *ngIf="isValidFielComprobation(registerForm, 'name')" class="error">{{
-      getFieldError(registerForm, "name")
-    }}</span>
+    <span *ngIf="isValidFielComprobation(registerForm, 'name')" class="error"
+      >{{ getFieldError(registerForm, "name")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
+    >
   </div>
 
   <div class="field mail-field">
@@ -59,9 +61,10 @@
     <label for="mailID" [class.filled]="registerForm.get('mail')?.value"
       >Mail</label
     >
-    <span *ngIf="isValidFielComprobation(registerForm, 'mail')" class="error">{{
-      getFieldError(registerForm, "mail")
-    }}</span>
+    <span *ngIf="isValidFielComprobation(registerForm, 'mail')" class="error"
+      >{{ getFieldError(registerForm, "mail")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
+    >
   </div>
 
   <div class="field passw-field">
@@ -85,7 +88,8 @@
     <span
       *ngIf="isValidFielComprobation(registerForm, 'password')"
       class="error"
-      >{{ getFieldError(registerForm, "password") }}</span
+      >{{ getFieldError(registerForm, "password")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
     >
 
     <div class="password-checks">

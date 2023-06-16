@@ -5,7 +5,7 @@
   autocomplete="off"
 >
   <div class="field departments-field">
-    <mat-icon> {{ "chevron_right" }} </mat-icon>
+    <mat-icon class="pass-icon"> {{ "chevron_right" }} </mat-icon>
     <input
       #departmentInput
       id="departmentID"
@@ -27,7 +27,8 @@
     <span
       *ngIf="isValidFielComprobation(editProfileForm, 'departments')"
       class="error"
-      >{{ getFieldError(editProfileForm, "departments") }}</span
+      >{{ getFieldError(editProfileForm, "departments")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
     >
   </div>
 
@@ -43,10 +44,9 @@
     <label for="nameID" [class.filled]="editProfileForm.get('name')?.value"
       >Nombre</label
     >
-    <span
-      *ngIf="isValidFielComprobation(editProfileForm, 'name')"
-      class="error"
-      >{{ getFieldError(editProfileForm, "name") }}</span
+    <span *ngIf="isValidFielComprobation(editProfileForm, 'name')" class="error"
+      >{{ getFieldError(editProfileForm, "name")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
     >
   </div>
 
@@ -61,10 +61,9 @@
     <label for="mailID" [class.filled]="editProfileForm.get('mail')?.value"
       >Mail</label
     >
-    <span
-      *ngIf="isValidFielComprobation(editProfileForm, 'mail')"
-      class="error"
-      >{{ getFieldError(editProfileForm, "mail") }}</span
+    <span *ngIf="isValidFielComprobation(editProfileForm, 'mail')" class="error"
+      >{{ getFieldError(editProfileForm, "mail")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
     >
   </div>
 
@@ -91,7 +90,8 @@
     <span
       *ngIf="isValidFielComprobation(editProfileForm, 'password')"
       class="error"
-      >{{ getFieldError(editProfileForm, "password") }}</span
+      >{{ getFieldError(editProfileForm, "password")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
     >
 
     <!-- <div class="password-checks">

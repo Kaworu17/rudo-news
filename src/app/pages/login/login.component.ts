@@ -7,7 +7,5 @@ import { BackendDataService } from '../../services/backend-data.service';
   styleUrls: ['./login.component.less'],
 })
 export class LoginComponent {
-  constructor(private backendData: BackendDataService) {
-    this.backendData.callDb();
-  }
+  constructor() {}
 }

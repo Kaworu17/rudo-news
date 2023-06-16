@@ -23,7 +23,7 @@ body {
 }
 
 form {
-  margin: 20px 10px;
+  margin: 20px 0;
 
   .field {
     display: flex;
@@ -38,10 +38,23 @@ form {
       padding: 0 30px;
       color: @error;
       transform: translateY(-20px);
+      display: flex;
+      justify-content: space-between;
+
+      .warning-icon {
+        font-size: 15px;
+        transform: translateY(5px);
+        position: initial;
+      }
     }
 
     .ng-invalid.ng-touched {
       border: 1px solid @error;
+      background: #eee3e2;
+    }
+
+    .ng-invalid.ng-touched + label {
+      color: #eee3e2;
     }
   }
 
@@ -116,7 +129,7 @@ form {
   input:focus + label {
     display: block;
     color: @primary;
-    top: -55px;
+    top: -60px;
     z-index: 3;
   }
 
@@ -198,24 +211,28 @@ form {
 legal-texts {
   position: relative;
 
-  h1,
-  .title {
-    font-size: 20px;
-    font-weight: 700;
-  }
+  .legal-container {
+    h1,
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 18px;
+    }
 
-  h4 {
-    font-size: 16px;
-    font-weight: 700;
-    text-align: left;
-    display: flex;
-    justify-content: left;
-    width: 100%;
-  }
+    h4 {
+      font-size: 16px;
+      font-weight: 700;
+      text-align: left;
+      display: flex;
+      justify-content: left;
+      width: 100%;
+      margin-top: 20px;
+    }
 
-  p {
-    font-size: 16px;
-    font-weight: 400;
-    text-align: left;
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      text-align: left;
+    }
   }
 }

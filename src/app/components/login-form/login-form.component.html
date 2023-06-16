@@ -8,9 +8,10 @@
     <input formControlName="mail" type="text" placeholder="Mail" name="mail" />
     <label for="mail" [class.filled]="loginForm.get('mail')?.value">Mail</label>
 
-    <span *ngIf="isValidFielComprobation(loginForm, 'mail')" class="error">{{
-      getFieldError(loginForm, "mail")
-    }}</span>
+    <span *ngIf="isValidFielComprobation(loginForm, 'mail')" class="error"
+      >{{ getFieldError(loginForm, "mail") }}
+      <mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
+    >
   </div>
 
   <div class="field passw-field">
@@ -26,10 +27,9 @@
     <label for="password" [class.filled]="loginForm.get('password')?.value"
       >Password</label
     >
-    <span
-      *ngIf="isValidFielComprobation(loginForm, 'password')"
-      class="error"
-      >{{ getFieldError(loginForm, "password") }}</span
+    <span *ngIf="isValidFielComprobation(loginForm, 'password')" class="error"
+      >{{ getFieldError(loginForm, "password")
+      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
     >
   </div>
 

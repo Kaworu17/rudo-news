@@ -1,11 +1,19 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BackendDataService } from '../../services/backend-data.service';
+import { MatChipsModule } from '@angular/material/chips';
 import { TestData } from '../../models/test-data.model';
 
 @Component({
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.less'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SearchBarComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<string>();

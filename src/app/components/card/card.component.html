@@ -1,11 +1,13 @@
 <div class="card-container">
-  <div class="img-gradient">
+  <div [routerLink]="['/news', news.title]" class="img-gradient">
     <img src="{{ news.img }}" />
-    <h2 class="title">{{ news.title }}</h2>
+    <h2 [routerLink]="['/news', news.title]" class="title">{{ news.title }}</h2>
   </div>
   <div class="subtitle">
-    <span>{{ news.subtitle }}</span
-    ><span>{{ news.date }}</span>
+    <span class="subtitle-text" [routerLink]="['/news', news.title]">{{
+      news.subtitle
+    }}</span
+    ><span class="subtitle-date">{{ news.date }}</span>
   </div>
   <div class="content">
     {{ news.content }}

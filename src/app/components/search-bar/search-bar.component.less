@@ -1,8 +1,12 @@
+@primary: #ff005f;
+@main-bg: #efeded;
+
 .search-bar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 32px 20px 10px 20px;
+  margin: 32px 0 10px 0;
+  flex-wrap: wrap;
 
   .search-input {
     display: flex;
@@ -11,6 +15,11 @@
     background-color: white;
     border-radius: 42px;
     padding: 0 15px;
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+      margin-right: 0;
+    }
 
     button {
       background-color: white;
@@ -21,7 +30,15 @@
 
     input {
       border: none;
-      padding: 8px;
+      padding: 12px 8px;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 23px;
+      display: flex;
+      align-items: center;
+      color: #5e6270;
+      margin-left: 20px;
+      width: 250px;
 
       &:focus-visible {
         outline: none;
@@ -30,16 +47,55 @@
   }
 
   .tags-bar {
-    button {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+
+    .tags-bar-text {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+      margin-right: 25px;
+    }
+    mat-chip-option {
+      background-color: @main-bg;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 16px;
+      margin-right: 8px;
+      color: black;
+
+      &:hover {
+        background-color: #ff005d42;
+      }
+    }
+
+    //Color de texto cuando esta activo
+    .mat-mdc-chip-selected .mdc-evolution-chip__text-label {
+      color: @primary !important; /* Aquí puedes especificar el color deseado para el texto seleccionado */
+    }
+    //Color de check cuando esta activo
+    .mat-mdc-chip-selected .mdc-evolution-chip__checkmark {
+      color: @primary !important;
+    }
+    //color de focus
+    .mat-mdc-chip-focus-overlay {
+      color: transparent !important;
+      opacity: 0 !important;
+    }
+
+    /* button {
       border: 1px solid rgba(0, 0, 0, 0.12);
       border-radius: 16px;
       padding: 6px 12px;
-      margin-right: 5px;
+      margin-right: 8px;
 
       &:hover {
         background: rgba(255, 0, 95, 0.1);
       }
-    }
+    } */
     .active {
       border: 1px solid #ff005f;
       background: rgba(255, 0, 95, 0.1);

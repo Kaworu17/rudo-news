@@ -44,6 +44,7 @@ import { GenericDialogComponent } from './components/generic-dialog/generic-dial
 import { environment } from 'src/environments/environment.development';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     MatDialogModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatChipsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
   ],

@@ -24,6 +24,8 @@ export class NewsComponent implements OnInit {
     this.backendDataService.getData().subscribe((result) => {
       this.newsData = result;
     });
+
+    this.backendDataService.callDb();
   }
 
   getSearchNewsText(value: string) {

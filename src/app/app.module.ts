@@ -41,10 +41,10 @@ import { PolicysComponent } from './pages/policys/policys.component';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { ProfileEditFormComponent } from './components/profile-edit-form/profile-edit-form.component';
 import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component';
-import { environment } from 'src/environments/environment.development';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { MatChipsModule } from '@angular/material/chips';
+import { environment } from '../environments/environment.development';
 
 @NgModule({
   declarations: [

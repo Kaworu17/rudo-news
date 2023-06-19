@@ -5,7 +5,6 @@ import { TestData } from '../models/test-data.model';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',

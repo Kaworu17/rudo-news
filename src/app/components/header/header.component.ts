@@ -10,6 +10,6 @@ export class HeaderComponent {
   expanded: boolean = false;
 
   constructor() {
-    console.log('es Expandido?', this.expanded);
+    /* console.log('es Expandido?', this.expanded); */
   }
 }

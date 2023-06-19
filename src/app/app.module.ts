@@ -93,7 +93,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatCheckboxModule,
     MatRadioModule,
     MatChipsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
   ],
   providers: [],

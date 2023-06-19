@@ -3,6 +3,9 @@ import { Observable, of } from 'rxjs';
 import { TestData } from '../models/test-data.model';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -46,14 +49,5 @@ export class BackendDataService {
 
   public getData(): Observable<TestData[]> {
     return of(this.testData);
-  }
-
-  async callDb() {
-    this.db
-      .list('/news')
-      .valueChanges()
-      .subscribe((data) => {
-        console.log('result from db', data);
-      });
   }
 }

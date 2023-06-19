@@ -40,7 +40,7 @@ export class SearchBarComponent implements OnInit {
 
   sendSelectedTags(value: string[]) {
     this.newTagsEvent.emit(value);
-    console.log('valorTagsEmit: ', value);
+    /* console.log('valorTagsEmit: ', value); */
   }
 
   /* getTags() {
@@ -86,7 +86,7 @@ export class SearchBarComponent implements OnInit {
         return newArray.indexOf(element) === index;
       });
 
-      console.log('sinduplicados', this.separatedTags);
+      /* console.log('sinduplicados', this.separatedTags); */
     });
   }
 

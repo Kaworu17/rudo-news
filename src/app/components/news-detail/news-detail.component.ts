@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TestData } from 'src/app/models/test-data.model';
+import { NewsData } from 'src/app/models/test-data.model';
 import { getFieldError, isValidFielComprobation } from 'src/app/utils/utils';
 
 @Component({
@@ -9,15 +9,18 @@ import { getFieldError, isValidFielComprobation } from 'src/app/utils/utils';
   styleUrls: ['./news-detail.component.less'],
 })
 export class NewsDetailComponent {
-  @Input() newsDetail: TestData = {
+  @Input() newsDetail: NewsData = {
     id: 0,
-    img: '',
+    image: '',
     title: '',
     subtitle: '',
-    content: '',
-    body: '',
-    tags: [],
-    date: '',
+    short_description: '',
+    creation_date: '',
+    category: {
+      id: 0,
+      name: '',
+    },
+    is_favorite: false,
   };
 
   public isValidFielComprobation = isValidFielComprobation;

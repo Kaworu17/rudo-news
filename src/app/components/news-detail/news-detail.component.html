@@ -4,19 +4,19 @@
   </mat-icon>
   <h2>{{ newsDetail.title }}</h2>
   <div class="img-container">
-    <img src="{{ newsDetail.img }}" />
+    <img src="{{ newsDetail.image }}" />
   </div>
 
   <div class="news-container-text">
     <div class="subtitle">
       <span>{{ newsDetail.subtitle }}</span
-      ><span>{{ newsDetail.date }}</span>
+      ><span>{{ newsDetail.creation_date }}</span>
     </div>
     <div class="content">
-      {{ newsDetail.content }}
+      {{ newsDetail.short_description }}
     </div>
     <div class="body">
-      {{ newsDetail.body }}
+      {{ newsDetail.short_description }}
     </div>
     <div class="comments-container">
       <hr />

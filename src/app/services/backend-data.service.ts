@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { TestData } from '../models/test-data.model';
+import {
+  CategoryObject,
+  NewsData,
+  NewsDataObject,
+  TestData,
+} from '../models/test-data.model';
 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -44,9 +50,23 @@ export class BackendDataService {
     },
   ];
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase, private http: HttpClient) {}
+
+  public server: string = 'https://academy.rudo.es/';
 
   public getData(): Observable<TestData[]> {
     return of(this.testData);
+  }
+
+  public getDataFromRudoBack(page?: string): Observable<NewsDataObject> {
+    return this.http.get<any>(`${this.server}posts/?title=asd&page=1`);
+  }
+
+  public getListCategories(): Observable<CategoryObject> {
+    return this.http.get<any>(`${this.server}categories/`);
+  }
+
+  public getPost(id: string): Observable<NewsData> {
+    return this.http.get<any>(`${this.server}posts/${id}`);
   }
 }

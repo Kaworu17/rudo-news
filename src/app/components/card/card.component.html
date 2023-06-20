@@ -1,21 +1,23 @@
 <div class="card-container">
-  <div [routerLink]="['/news', news.title]" class="img-gradient">
-    <img src="{{ news.img }}" />
-    <h2 [routerLink]="['/news', news.title]" class="title">{{ news.title }}</h2>
+  <div [routerLink]="['/news', news.id]" class="img-gradient">
+    <img src="{{ news.image }}" />
+    <h2 [routerLink]="['/news', news.id]" class="title">
+      {{ news.title }}
+    </h2>
   </div>
   <div class="subtitle">
-    <span class="subtitle-text" [routerLink]="['/news', news.title]">{{
-      news.subtitle
+    <span class="subtitle-text" [routerLink]="['/news', news.id]">{{
+      news.title
     }}</span
-    ><span class="subtitle-date">{{ news.date }}</span>
+    ><span class="subtitle-date">{{ news.creation_date }}</span>
   </div>
   <div class="content">
-    {{ news.content }}
+    {{ news.short_description }}
   </div>
   <hr />
   <div class="footer">
     <div class="tags">
-      <span *ngFor="let tag of news.tags">{{ tag }}</span>
+      <span>{{ news.category.name }}</span>
     </div>
     <div class="icons">
       <mat-icon (click)="isFavorite()">

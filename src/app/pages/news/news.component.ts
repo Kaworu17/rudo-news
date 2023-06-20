@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BackendDataService } from '../../services/backend-data.service';
-import { TestData } from 'src/app/models/test-data.model';
+import { NewsData, TestData } from 'src/app/models/test-data.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'news',
@@ -11,18 +13,24 @@ export class NewsComponent implements OnInit {
   searchTerm: string = '';
   separatedTags: string[] = [];
   separatedTagsString: string = this.separatedTags.toString();
-  constructor(private backendDataService: BackendDataService) {}
+  newsData: NewsData[] = [];
+  nextPage: string = '';
 
-  newsData: TestData[] = [];
+  constructor(
+    private backendDataService: BackendDataService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.searchNews();
-    this.getTags(this.separatedTags);
+    /* this.getTags(this.separatedTags); */
   }
 
   searchNews() {
-    this.backendDataService.getData().subscribe((result) => {
-      this.newsData = result;
+    this.backendDataService.getDataFromRudoBack().subscribe((res) => {
+      this.nextPage = res.next;
+      this.newsData = res.results;
+      console.log('res', res);
     });
   }
 
@@ -31,6 +39,7 @@ export class NewsComponent implements OnInit {
   }
 
   getTags(value: string[]) {
+    console.log('getTags Value: ', value);
     this.separatedTags = value;
     this.separatedTagsString = this.separatedTags.toString();
   }

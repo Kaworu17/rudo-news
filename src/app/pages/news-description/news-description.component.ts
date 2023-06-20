@@ -1,6 +1,10 @@
 import { Component, SecurityContext } from '@angular/core';
 import { BackendDataService } from '../../services/backend-data.service';
-import { TestData } from 'src/app/models/test-data.model';
+import {
+  NewsData,
+  NewsDataObject,
+  TestData,
+} from 'src/app/models/test-data.model';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -18,17 +22,19 @@ export class NewsDescriptionComponent {
     this.getUrlTitle();
     this.getNewsDescriptionData();
   }
-  urlTitle: string | null = '';
-  newsDescriptionObject: TestData[] = [];
-  newsDescription: TestData = {
+  urlTitle: string = '';
+  newsDescription: NewsData = {
     id: 0,
-    img: '',
+    image: '',
     title: '',
     subtitle: '',
-    content: '',
-    body: '',
-    tags: [],
-    date: '',
+    short_description: '',
+    creation_date: '',
+    category: {
+      id: 0,
+      name: '',
+    },
+    is_favorite: false,
   };
   newsTitle: string = 'Rock Sanchez3!';
 
@@ -38,12 +44,10 @@ export class NewsDescriptionComponent {
   }
 
   getNewsDescriptionData() {
-    this.backendDataService.getData().subscribe((result) => {
-      this.newsDescriptionObject = result.filter(
-        (el) => el.title == this.urlTitle
-      );
-    });
+    this.backendDataService.getPost(this.urlTitle).subscribe((result) => {
+      console.log('post:', result);
 
-    this.newsDescription = this.newsDescriptionObject[0];
+      this.newsDescription = result;
+    });
   }
 }

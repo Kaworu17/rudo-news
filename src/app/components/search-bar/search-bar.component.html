@@ -1,18 +1,11 @@
 <div class="search-bar-container">
   <div class="tags-bar">
     <span class="tags-bar-text">Filtrar por:</span>
-    <!-- <button
-      (click)="isButtonActive(tag)"
-      *ngFor="let tag of separatedTags"
-      [ngClass]="{ active: buttonStates[tag] }"
-    >
-      {{ tag }}
-    </button> -->
 
     <mat-chip-option
       color="accent"
       (click)="isButtonActive(tag)"
-      *ngFor="let tag of separatedTags"
+      *ngFor="let tag of tags"
       [class.mdc-evolution-chip--selected]="buttonStates[tag]"
       [ngClass]="{ active: buttonStates[tag] }"
       >{{ tag }}</mat-chip-option

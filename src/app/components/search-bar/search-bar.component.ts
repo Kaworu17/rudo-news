@@ -6,8 +6,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BackendDataService } from '../../services/backend-data.service';
-import { MatChipsModule } from '@angular/material/chips';
-import { TestData } from '../../models/test-data.model';
 
 @Component({
   selector: 'search-bar',
@@ -18,19 +16,18 @@ import { TestData } from '../../models/test-data.model';
 export class SearchBarComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<string>();
   @Output() newTagsEvent = new EventEmitter<string[]>();
+
   searchTerm: string = '';
-  newsData: string[] = [];
-  separatedTags: string[] = [];
+  tags: string[] = [];
   selectedTags: string[] = [];
   buttonTags: string[] = [];
   private toggle: boolean = false;
   private isflipped: boolean = false;
 
-  constructor(private backendDataService: BackendDataService) {
-    this.getTags();
-  }
+  constructor(private backendDataService: BackendDataService) {}
   ngOnInit(): void {
-    this.sendSelectedTags(this.separatedTags);
+    this.sendSelectedTags(this.tags);
+    this.getTags();
   }
 
   searchNewsText(value: string) {
@@ -40,53 +37,16 @@ export class SearchBarComponent implements OnInit {
 
   sendSelectedTags(value: string[]) {
     this.newTagsEvent.emit(value);
-    /* console.log('valorTagsEmit: ', value); */
+    console.log('valorTagsEmit: ', value);
   }
 
-  /* getTags() {
-    this.backendDataService.getData().subscribe((result) => {
-      this.newsData = result.map((element) => {
-        return `${element.tags}`;
-      });
-      console.log('tagssa: ', this.newsData);
-      //juntar todo en un string
-      console.log('tags: ', this.newsData.toString());
-
-      let stringData = this.newsData.toString();
-
-      //separar por comas
-      let stringSeparatedData = stringData.split(',');
-      console.log('stringSeparatedData', stringSeparatedData);
-
-      //remover duplicados
-      let separatedTags = stringSeparatedData.filter((element, index) => {
-        return stringSeparatedData.indexOf(element) === index;
-      });
-
-      console.log('unique chars: ', separatedTags);
-    });
-  } */
-
   getTags() {
-    this.backendDataService.getData().subscribe((result) => {
-      this.newsData = result.map((element) => {
-        return `${element.tags}`;
+    this.backendDataService.getListCategories().subscribe((result) => {
+      this.tags = result.results!.map((element: { name: any }) => {
+        return `${element.name}`;
       });
 
-      let temporalArray;
-      let newArray: string[] = [];
-
-      this.newsData.forEach((element) => {
-        temporalArray = element.split(',');
-        newArray.push(...temporalArray);
-      });
-
-      //remover duplicados
-      this.separatedTags = newArray.filter((element, index) => {
-        return newArray.indexOf(element) === index;
-      });
-
-      /* console.log('sinduplicados', this.separatedTags); */
+      this.sendSelectedTags(this.tags);
     });
   }
 
@@ -120,7 +80,8 @@ export class SearchBarComponent implements OnInit {
 
   isEmptyTags(tags: string[]) {
     if (!this.selectedTags.length) {
-      this.sendSelectedTags(this.separatedTags);
+      console.log('Vacío', this.tags);
+      this.sendSelectedTags(this.tags);
     }
   }
 }

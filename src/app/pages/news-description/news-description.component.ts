@@ -1,5 +1,8 @@
 import { Component, SecurityContext } from '@angular/core';
-import { BackendDataService } from '../../services/backend-data.service';
+import {
+  BackendDataService,
+  Network,
+} from '../../services/backend-data.service';
 import {
   NewsData,
   NewsDataObject,
@@ -7,6 +10,7 @@ import {
 } from 'src/app/models/test-data.model';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'news-description',
@@ -17,7 +21,8 @@ export class NewsDescriptionComponent {
   constructor(
     private backendDataService: BackendDataService,
     private router: Router,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private network: Network
   ) {
     this.getUrlTitle();
     this.getNewsDescriptionData();
@@ -41,13 +46,28 @@ export class NewsDescriptionComponent {
   getUrlTitle() {
     this.urlTitle = this.router.url.replace('/news/', '');
     this.urlTitle = decodeURIComponent(this.urlTitle);
+
+    console.log('URL:', this.urlTitle);
   }
 
-  getNewsDescriptionData() {
-    this.backendDataService.getPost(this.urlTitle).subscribe((result) => {
+  async getNewsDescriptionData() {
+    /* this.backendDataService.getPost(this.urlTitle).subscribe((result) => {
       console.log('post:', result);
 
       this.newsDescription = result;
-    });
+    }); */
+
+    const httpMethod = 'GET';
+
+    let callResult = await this.network.call(
+      `/api/posts/${this.urlTitle}/`,
+      httpMethod,
+      true
+    );
+
+    if (callResult != false) {
+      let temp: any = callResult;
+      this.newsDescription = temp;
+    }
   }
 }

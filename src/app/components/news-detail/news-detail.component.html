@@ -10,7 +10,12 @@
   <div class="news-container-text">
     <div class="subtitle">
       <span>{{ newsDetail.subtitle }}</span
-      ><span>{{ newsDetail.creation_date }}</span>
+      ><span>{{ newsDetail.creation_date | date : "dd-MM-yyyy" }}</span>
+      <ng-container *ngIf="newsDetail.is_favorite"
+        ><mat-icon class="heart">
+          {{ "favorite" }}
+        </mat-icon></ng-container
+      >
     </div>
     <div class="content">
       {{ newsDetail.short_description }}

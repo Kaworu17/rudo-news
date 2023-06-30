@@ -45,7 +45,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { MatChipsModule } from '@angular/material/chips';
 import { environment } from '../environments/environment.development';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { PresentationComponent } from './pages/presentation/presentation.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileEditComponent,
     ProfileEditFormComponent,
     GenericDialogComponent,
+    PresentationComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,7 +101,13 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireDatabaseModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

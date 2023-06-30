@@ -5,7 +5,7 @@
   autocomplete="off"
 >
   <div class="field departments-field">
-    <mat-icon class="pass-icon"> {{ "chevron_right" }} </mat-icon>
+    <mat-icon class="pass-icon"> {{ "arrow_forward_ios" }} </mat-icon>
     <input
       #departmentInput
       id="departmentID"
@@ -66,56 +66,10 @@
       }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
     >
   </div>
-
-  <div class="field passw-field">
-    <mat-icon
-      [class.disabled]="isIconEnabled"
-      matSuffix
-      (click)="toggleShowPassword()"
-    >
-      {{ isShowPassword ? "visibility_off" : "visibility" }}
-    </mat-icon>
-    <input
-      id="passwordID"
-      formControlName="password"
-      [type]="isShowPassword ? 'text' : 'password'"
-      placeholder="Password"
-    />
-
-    <label
-      for="passwordID"
-      [class.filled]="editProfileForm.get('password')?.value"
-      >Password</label
-    >
-    <span
-      *ngIf="isValidFielComprobation(editProfileForm, 'password')"
-      class="error"
-      >{{ getFieldError(editProfileForm, "password")
-      }}<mat-icon class="warning-icon">{{ "warning" }}</mat-icon></span
-    >
-
-    <!-- <div class="password-checks">
-      <span [class.approved]="isMayus(registerForm.controls['password'].value)"
-        >· MAYUSCULA</span
-      >
-      <span [class.approved]="isMinus(registerForm.controls['password'].value)"
-        >· minuscula</span
-      >
-      <span
-        [class.approved]="hasLenght(registerForm.controls['password'].value)"
-        >· 8 CARÁCTERES</span
-      >
-      <span
-        [class.approved]="hasNumbers(registerForm.controls['password'].value)"
-        >· NÚMEROS</span
-      >
-      <span
-        [class.approved]="
-          hasEspecialCharacter(registerForm.controls['password'].value)
-        "
-        >· CARÁCTER ESPECIAL</span
-      >
-    </div> -->
+  <div class="buttons-container">
+    <button routerLink="/new-password">
+      Cambiar contraseña <mat-icon>{{ "arrow_forward_ios" }}</mat-icon>
+    </button>
   </div>
 
   <button

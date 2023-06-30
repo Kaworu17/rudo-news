@@ -9,7 +9,9 @@
     <span class="subtitle-text" [routerLink]="['/news', news.id]">{{
       news.title
     }}</span
-    ><span class="subtitle-date">{{ news.creation_date }}</span>
+    ><span class="subtitle-date">{{
+      news.creation_date | date : "dd-MM-yyyy"
+    }}</span>
   </div>
   <div class="content">
     {{ news.short_description }}
@@ -17,11 +19,16 @@
   <hr />
   <div class="footer">
     <div class="tags">
-      <span>{{ news.category.name }}</span>
+      <span (click)="clickTag(news.category.name)">{{
+        news.category.name
+      }}</span>
     </div>
     <div class="icons">
-      <mat-icon (click)="isFavorite()">
+      <!-- <mat-icon (click)="isFavorite()">
         {{ favorite ? "favorite" : "favorite_border" }}
+      </mat-icon> -->
+      <mat-icon class="heart" (click)="isFavorite()">
+        {{ news.is_favorite ? "favorite" : "favorite_border" }}
       </mat-icon>
       <mat-icon>
         {{ "share" }}

@@ -1,5 +1,6 @@
 @error: #f07e3d;
 @success: #53d487;
+@primary: #ff005f;
 
 .register-form {
   max-width: 398px;
@@ -56,5 +57,38 @@
 
   .disabled {
     color: rgb(170, 170, 170);
+  }
+}
+
+.buttons-container {
+  max-width: 368px;
+  width: 100%;
+  width: -moz-available;
+  width: stretch;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    color: @primary;
+    width: 328px;
+    padding: 17px 15px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    border-radius: 28px;
+    margin: 0 0 20px 0;
+    transition: all 0.1s linear;
+
+    &:hover {
+      color: #e70457;
+      transform: translateY(-3px);
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.323);
+      cursor: pointer;
+    }
   }
 }

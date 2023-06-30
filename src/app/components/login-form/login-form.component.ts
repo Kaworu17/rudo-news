@@ -1,6 +1,15 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isValidFielComprobation, getFieldError } from 'src/app/utils/utils';
+import {
+  BackendDataService,
+  Network,
+} from '../../services/backend-data.service';
+import { HttpParams } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
+import { GenericDialogComponent } from '../generic-dialog/generic-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login-form',
@@ -11,11 +20,11 @@ export class LoginFormComponent {
   public isValidFielComprobation = isValidFielComprobation;
   public getFieldError = getFieldError;
   public loginForm: FormGroup = new FormGroup({
-    mail: new FormControl('', [
+    mail: new FormControl('ramonpuchades@rudo.es', [
       Validators.required,
       Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$'),
     ]),
-    password: new FormControl('', [
+    password: new FormControl('Puchades123!', [
       Validators.required,
       Validators.minLength(4),
     ]),
@@ -23,9 +32,27 @@ export class LoginFormComponent {
 
   public isShowPassword: boolean = false;
 
-  onLogin(): void {
+  constructor(
+    private backendDataService: BackendDataService,
+    private network: Network,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
+
+  async onLogin(): Promise<void> {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
+
+      let test = await this.network.authToken(
+        this.loginForm.value['mail'],
+        this.loginForm.value['password']
+      );
+      console.log('test:', test);
+      if (test == false) {
+        this.openGenericDialog();
+      } else {
+        this.router.navigate(['/news']);
+      }
     } else {
       this.loginForm.markAllAsTouched();
     }
@@ -33,5 +60,30 @@ export class LoginFormComponent {
 
   toggleShowPassword(): void {
     this.isShowPassword = !this.isShowPassword;
+  }
+
+  sendComment() {
+    //enviar comentario
+    const httpMethod = 'POST';
+    let params = new HttpParams();
+    let body = { text: 'perro3' };
+
+    this.network.call(
+      '/api/posts/1/create_comment/',
+      httpMethod,
+      true,
+      params,
+      body
+    );
+  }
+
+  openGenericDialog() {
+    let testText: string = 'El usuario o contraseña no son correctos';
+    let titleText: string = 'Acceso denegado';
+    this.dialog.open(GenericDialogComponent, {
+      width: '312px',
+      panelClass: 'custom-dialog',
+      data: { testText, titleText, cancel: false },
+    });
   }
 }

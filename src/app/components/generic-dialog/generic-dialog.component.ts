@@ -12,7 +12,17 @@ export class GenericDialogComponent {
     private dialogRef: MatDialogRef<GenericDialogComponent>
   ) {}
 
+  public acceptDialog: boolean = false;
+
   onSave(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({
+      acceptDialog: true,
+    });
+  }
+
+  onClose(): void {
+    this.dialogRef.close({
+      acceptDialog: false,
+    });
   }
 }

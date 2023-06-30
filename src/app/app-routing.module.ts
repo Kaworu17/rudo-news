@@ -12,6 +12,7 @@ import { FaqComponent } from './pages/faq/faq.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { PolicysComponent } from './pages/policys/policys.component';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
+import { PresentationComponent } from './pages/presentation/presentation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'profile/terms', component: TermsComponent },
   { path: 'profile/policys', component: PolicysComponent },
   { path: 'profile/edit', component: ProfileEditComponent },
+  { path: 'presentation', component: PresentationComponent },
   { path: '**', redirectTo: 'login' },
 ];
 

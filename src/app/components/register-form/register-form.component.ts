@@ -1,17 +1,28 @@
-import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentsDialogComponent } from '../departments-dialog/departments-dialog.component';
 import { MatRadioChange } from '@angular/material/radio';
 import { isValidFielComprobation, getFieldError } from 'src/app/utils/utils';
+import { Network } from 'src/app/services/backend-data.service';
+import { Category, Departments } from 'src/app/models/test-data.model';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.less'],
 })
-export class RegisterFormComponent {
+export class RegisterFormComponent implements OnInit {
   @ViewChild('focusInput') focusInput!: ElementRef;
   @ViewChild('departmentInput') departInput!: ElementRef;
 
@@ -31,6 +42,8 @@ export class RegisterFormComponent {
     'Ionic',
     'JP',
   ];
+  public arrayDepartments: Category[] = [];
+  public stringDepartments: String[] = [];
   public isShowPassword: boolean = false;
   public isRadioCheck: boolean = false;
   public isDisabled: boolean = true;
@@ -59,14 +72,89 @@ export class RegisterFormComponent {
     ],
   });
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
+  constructor(
+    private fb: FormBuilder,
+    public dialog: MatDialog,
+    public network: Network,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-  onRegister(): void {
+  ngOnInit(): void {
+    this.getDepartments();
+  }
+
+  async onRegister(): Promise<void> {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
     }
     console.log(this.registerForm.value);
+
+    const httpMethod = 'POST';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    });
+
+    const name = this.registerForm.get('name')?.value;
+    const departments = this.registerForm.get('departments')?.value;
+    const mail = this.registerForm.get('mail')?.value;
+    const password = this.registerForm.get('password')?.value;
+
+    console.log('name:', name);
+    console.log('departments:', departments);
+    console.log('mail:', mail);
+    console.log('password:', password);
+
+    console.log('arraydep:', this.arrayDepartments);
+
+    //change selected string array to ids array
+    const departmentIds = departments
+      .filter((department: string) =>
+        this.arrayDepartments.some((item) => item.name === department)
+      )
+      .map((department: string) => {
+        const matchingDepartment = this.arrayDepartments.find(
+          (item) => item.name === department
+        );
+        return matchingDepartment ? matchingDepartment.id : null;
+      });
+
+    console.log('departments ids', departmentIds.join(' '));
+
+    let body = new HttpParams()
+      .set('fullname', name)
+      .set('email', mail)
+      .set('password', password)
+      .set('departments', departmentIds.join(' '));
+
+    //TO DO el server debería devolver algo correcto
+    try {
+      const res = await lastValueFrom(
+        this.http.post<any>('/api/users/register/', body.toString(), {
+          headers: headers,
+        })
+      );
+      console.log('Registro exitoso', res);
+
+      // Llamada a authToken después de que se complete la llamada post
+      await this.network.authToken(mail, password);
+
+      // Navegación a '/news' después de que se complete authToken
+      this.router.navigate(['/news']);
+    } catch (error: any) {
+      console.error('Error en el registro', error);
+      console.error('Error status', error.status);
+      if (error.status === 500) {
+        // Llamada a authToken después de que se complete la llamada post
+        await this.network.authToken(mail, password);
+
+        // Navegación a '/news' después de que se complete authToken
+        this.router.navigate(['/news']);
+      }
+    }
+
+    console.log('registrado');
   }
 
   openDialog() {
@@ -77,7 +165,7 @@ export class RegisterFormComponent {
       panelClass: 'custom-dialog',
       data: {
         selectedDepartments: this.registerForm.value.departments,
-        importedDepartments: this.arrayTestDepartments,
+        importedDepartments: this.stringDepartments,
       },
     });
 
@@ -86,10 +174,6 @@ export class RegisterFormComponent {
         const selectedDepartments = Object.keys(result.departments).filter(
           (key) => result.departments[key]
         );
-        /* .map(
-            (key) => key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
-          )
-          .join(', '); */
 
         const departmentsValue =
           selectedDepartments.length > 0 ? selectedDepartments : '';
@@ -101,6 +185,64 @@ export class RegisterFormComponent {
       this.isInputEnabled();
       this.focusInput.nativeElement.focus();
     });
+  }
+
+  /* async getDepartments() {
+    const httpMethod = 'GET';
+    let departaments = await this.network.call(
+      '/api/departments/',
+      httpMethod,
+      false
+    );
+
+    if (departaments != false) {
+      let temp: any = departaments;
+      this.arrayDepartments = temp.results;
+      this.stringDepartments = this.arrayDepartments.map((el) => {
+        return el.name;
+      });
+    }
+  } */
+
+  async getDepartments() {
+    let page = 1;
+    const httpMethod = 'GET';
+
+    while (true) {
+      let departments = await this.network.call(
+        `/api/departments/?page=${page}`,
+        httpMethod,
+        false
+      );
+
+      console.log('departments', departments);
+
+      if (departments === false) {
+        break;
+      }
+
+      let depart = departments as Departments;
+
+      if (page === 1) {
+        this.arrayDepartments = depart.results as Category[];
+      } else {
+        this.arrayDepartments.push(...(depart.results as Category[]));
+      }
+
+      if (!depart.next) {
+        break;
+      }
+
+      page++;
+    }
+
+    console.log('array final:', this.arrayDepartments);
+
+    this.stringDepartments = this.arrayDepartments.map((el) => {
+      return el.name;
+    });
+
+    console.log('departamentos:', this.stringDepartments);
   }
 
   toggleShowPassword(): void {

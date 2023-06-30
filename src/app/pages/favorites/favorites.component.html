@@ -1,2 +1,5 @@
 <header [expanded]="true"></header>
-<p>favorites works!</p>
+
+<div class="cards-container">
+  <card *ngFor="let news of newsData" [news]="news"></card>
+</div>

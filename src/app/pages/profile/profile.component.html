@@ -3,7 +3,8 @@
 <div class="buttons-wrapper">
   <div class="buttons-container">
     <div class="profile-name">
-      <span>Jordi Miguel Aguado</span><span>jma26@rudo.es</span>
+      <span>{{ profileData.fullname }}</span
+      ><span>{{ profileData.email }}</span>
     </div>
     <button routerLink="/profile/edit">
       Editar Perfil <mat-icon>{{ "arrow_forward_ios" }}</mat-icon>

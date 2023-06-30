@@ -6,6 +6,7 @@
       color="accent"
       (click)="isButtonActive(tag)"
       *ngFor="let tag of tags"
+      id="{{ tag }}"
       [class.mdc-evolution-chip--selected]="buttonStates[tag]"
       [ngClass]="{ active: buttonStates[tag] }"
       >{{ tag }}</mat-chip-option

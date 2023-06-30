@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isValidFielComprobation, getFieldError } from 'src/app/utils/utils';
 import { NewPasswordDialogComponent } from '../new-password-dialog/new-password-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Network } from 'src/app/services/backend-data.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'new-password-form',
@@ -37,7 +39,7 @@ export class NewPasswordFormComponent {
     ]),
   });
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private network: Network) {}
 
   onNewPwRecovery(): void {
     if (this.newPasswordForm.valid) {
@@ -54,6 +56,20 @@ export class NewPasswordFormComponent {
       panelClass: 'custom-dialog',
       data: this.isPasswordMatch,
     });
+
+    const httpMethod = 'POST';
+    let params = new HttpParams();
+    let body = {
+      password: this.newPasswordForm.get('actualPassword')?.value,
+      new_password_1: this.newPasswordForm.get('newPassword')?.value,
+    };
+    this.network.call(
+      '/api/users/change-password/',
+      httpMethod,
+      true,
+      params,
+      body
+    );
   }
 
   toggleShowPassword(): void {

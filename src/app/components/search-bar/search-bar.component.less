@@ -60,6 +60,7 @@
       line-height: 21px;
       margin-right: 25px;
     }
+
     mat-chip-option {
       background-color: @main-bg;
       border: 1px solid rgba(0, 0, 0, 0.12);
@@ -72,14 +73,18 @@
       }
     }
 
+    .mdc-evolution-chip__text-label {
+      color: black !important;
+    }
+
     //Color de texto cuando esta activo
-    .mat-mdc-chip-selected .mdc-evolution-chip__text-label {
-      color: @primary !important; /* Aquí puedes especificar el color deseado para el texto seleccionado */
-    }
+    //.mat-mdc-chip-selected .mdc-evolution-chip__text-label {
+    //  color: @primary !important; /* Aquí puedes especificar el color deseado para el texto seleccionado */
+    //}
     //Color de check cuando esta activo
-    .mat-mdc-chip-selected .mdc-evolution-chip__checkmark {
-      color: @primary !important;
-    }
+    //.mat-mdc-chip-selected .mdc-evolution-chip__checkmark {
+    //  color: @primary !important;
+    //}
     //color de focus
     .mat-mdc-chip-focus-overlay {
       color: transparent !important;
@@ -104,6 +109,14 @@
       &:hover {
         background-color: rgba(255, 0, 95, 0.3);
       }
+
+      .mdc-evolution-chip__checkmark {
+        color: @primary !important;
+      }
+    }
+
+    .active > * .mdc-evolution-chip__text-label {
+      color: @primary !important;
     }
   }
 }

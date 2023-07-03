@@ -1,6 +1,15 @@
 <div class="card-container">
   <div [routerLink]="['/news', news.id]" class="img-gradient">
-    <img src="{{ news.image }}" />
+    <ngx-skeleton-loader
+      *ngIf="!contentLoaded"
+      [theme]="{ height: '175px','border-radius': '32px 32px 0 0', }"
+    >
+    </ngx-skeleton-loader>
+    <img
+      [hidden]="!contentLoaded"
+      (load)="contentLoaded = true"
+      src="{{ news.image }}"
+    />
     <h2 [routerLink]="['/news', news.id]" class="title">
       {{ news.title }}
     </h2>

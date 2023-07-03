@@ -25,6 +25,7 @@
     "firebase": "^9.22.2",
     "firestore": "^1.1.6",
     "https-proxy-agent": "^7.0.0",
+    "ngx-skeleton-loader": "^8.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

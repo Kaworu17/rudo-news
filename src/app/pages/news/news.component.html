@@ -4,12 +4,30 @@
     (newItemEvent)="getSearchNewsText($event)"
     (newTagsEvent)="getTags($event)"
   ></search-bar>
-  <div class="cards-container">
+
+  <div class="spinner-container" *ngIf="showLoader">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!showLoader" class="cards-container">
     <card
       *ngFor="
         let news of newsData | searchFilter : searchTerm : separatedTagsString
       "
       [news]="news"
     ></card>
+  </div>
+  <div class="googleMapsContainer">
+    <h1>¿Dónde estamos?</h1>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d769.8678515235915!2d-0.3555047154487623!3d39.48126882133007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd60493e9b94987b%3A0x1611cc9d9236e436!2sRudo%20Apps!5e0!3m2!1ses!2ses!4v1688124064278!5m2!1ses!2ses"
+      width="{{ innerWidth }}"
+      height="450"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      onload="resizeIframe(this);"
+    ></iframe>
   </div>
 </div>

@@ -434,7 +434,7 @@ export class Network {
     });
   }
 
-  public getData04(): Observable<AuthToken> {
+  /* public getData04(): Observable<AuthToken> {
     const url = '/api/auth/token/';
     const headers = new HttpHeaders({
       'Content-Type': 'multipart/form-data',
@@ -451,9 +451,9 @@ export class Network {
     );
 
     return this.http.post<AuthToken>(url, formData, { headers: headers });
-  }
+  } */
 
-  /* public getData04(): Observable<AuthToken> {
+  public getData04(): Observable<AuthToken> {
     const url = '/api/auth/token/';
     // Generar un boundary único
     const boundary = 'boundary_' + Math.random().toString().substr(2);
@@ -482,7 +482,7 @@ export class Network {
       `--${boundary}--`;
 
     return this.http.post<AuthToken>(url, body, { headers: headers });
-  } */
+  }
 
   public getData05(): Observable<AuthToken> {
     const url = '/api/auth/token/';

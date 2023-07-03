@@ -48,6 +48,8 @@ import { environment } from '../environments/environment.development';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PresentationComponent } from './pages/presentation/presentation.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -97,9 +99,11 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     MatCheckboxModule,
     MatRadioModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     HttpClientModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [
     {

@@ -18,6 +18,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     '/api/auth/token',
     '/api/auth/forgotten-password',
     '/api/profile/faq',
+    '/api/profile/policys',
     '/api/categories/',
     '/api/departments/',
     '/api/users/register/',

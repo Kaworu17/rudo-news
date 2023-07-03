@@ -135,6 +135,7 @@ export class RegisterFormComponent implements OnInit {
           headers: headers,
         })
       );
+      localStorage.clear();
       console.log('Registro exitoso', res);
 
       // Llamada a authToken después de que se complete la llamada post

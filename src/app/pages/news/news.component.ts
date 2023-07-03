@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {
   BackendDataService,
   Network,
@@ -6,6 +6,8 @@ import {
 import { NewsData, TestData } from 'src/app/models/test-data.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'news',
@@ -18,26 +20,34 @@ export class NewsComponent implements OnInit {
   separatedTagsString: string = this.separatedTags.toString();
   newsData: NewsData[] = [];
   nextPage: string = '';
+  innerWidth: any;
+  showLoader!: boolean;
 
   constructor(
     private backendDataService: BackendDataService,
     private network: Network,
-    private http: HttpClient
+    private http: HttpClient,
+    private loaderService: LoaderService
   ) {}
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.innerWidth = window.innerWidth - 50;
+  }
+
   ngOnInit(): void {
+    this.loaderService.status.subscribe((val: boolean) => {
+      this.showLoader = val;
+    });
+    //http call starts
+    this.loaderService.display(true);
+
+    this.innerWidth = window.innerWidth - 50;
     this.searchNews();
     /* this.getTags(this.separatedTags); */
   }
 
   async searchNews() {
-    console.log('Entra');
-    /* this.backendDataService.getDataFromRudoBack().subscribe((res) => {
-      this.nextPage = res.next;
-      this.newsData = res.results;
-      console.log('res', res);
-    }); */
-
     let params = new HttpParams().set('page', '1');
     const httpMethod = 'GET';
 
@@ -52,6 +62,8 @@ export class NewsComponent implements OnInit {
       let temp: any = callResult;
       this.newsData = temp.results;
     }
+
+    this.loaderService.display(false);
   }
 
   getSearchNewsText(value: string) {

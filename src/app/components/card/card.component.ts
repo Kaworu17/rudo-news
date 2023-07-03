@@ -11,6 +11,7 @@ import { Network } from 'src/app/services/backend-data.service';
 export class CardComponent {
   @Input() news: NewsData = {} as NewsData;
   public favorite: boolean = this.news.is_favorite;
+  public contentLoaded = false;
 
   constructor(private network: Network) {}
 

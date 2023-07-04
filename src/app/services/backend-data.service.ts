@@ -51,7 +51,7 @@ export class BackendDataService {
     },
   ];
 
-  constructor(private db: AngularFireDatabase, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   public server: string = 'https://academy.rudo.es/';
 

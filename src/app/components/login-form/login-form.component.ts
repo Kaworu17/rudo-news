@@ -62,21 +62,6 @@ export class LoginFormComponent {
     this.isShowPassword = !this.isShowPassword;
   }
 
-  sendComment() {
-    //enviar comentario
-    const httpMethod = 'POST';
-    let params = new HttpParams();
-    let body = { text: 'perro3' };
-
-    this.network.call(
-      '/api/posts/1/create_comment/',
-      httpMethod,
-      true,
-      params,
-      body
-    );
-  }
-
   openGenericDialog() {
     let testText: string = 'El usuario o contraseña no son correctos';
     let titleText: string = 'Acceso denegado';

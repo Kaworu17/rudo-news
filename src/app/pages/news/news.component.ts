@@ -48,19 +48,21 @@ export class NewsComponent implements OnInit {
   }
 
   async searchNews() {
-    let params = new HttpParams().set('page', '1');
-    const httpMethod = 'GET';
+    if (!this.newsData.length) {
+      let params = new HttpParams().set('page', '1');
+      const httpMethod = 'GET';
 
-    let callResult = await this.network.call(
-      '/api/posts/?title=asd&page=1/',
-      httpMethod,
-      true,
-      params
-    );
+      let callResult = await this.network.call(
+        '/api/posts/?title=asd&page=1/',
+        httpMethod,
+        true,
+        params
+      );
 
-    if (callResult != false) {
-      let temp: any = callResult;
-      this.newsData = temp.results;
+      if (callResult != false) {
+        let temp: any = callResult;
+        this.newsData = temp.results;
+      }
     }
 
     this.loaderService.display(false);

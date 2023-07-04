@@ -19,7 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { HeaderComponent } from './components/header/header.component';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import {} from './components/breadcrumb/breadcrumb.component';
 import { ForgottenPasswordComponent } from './pages/forgotten-password/forgotten-password.component';
 import { ForgottenPasswordFormComponent } from './components/forgotten-password-form/forgotten-password-form.component';
 import { ForgottenPasswordDialogComponent } from './components/forgotten-password-dialog/forgotten-password-dialog.component';
@@ -41,8 +41,6 @@ import { PolicysComponent } from './pages/policys/policys.component';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { ProfileEditFormComponent } from './components/profile-edit-form/profile-edit-form.component';
 import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { MatChipsModule } from '@angular/material/chips';
 import { environment } from '../environments/environment.development';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -50,23 +48,13 @@ import { PresentationComponent } from './pages/presentation/presentation.compone
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BreadcrumbModule } from './components/breadcrumb/breadcrumb.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    LoginFormComponent,
-    RegisterComponent,
-    RegisterFormComponent,
     DepartmentsDialogComponent,
     HeaderComponent,
-    BreadcrumbComponent,
-    ForgottenPasswordComponent,
-    ForgottenPasswordFormComponent,
-    ForgottenPasswordDialogComponent,
-    NewPasswordComponent,
-    NewPasswordFormComponent,
-    NewPasswordDialogComponent,
     NewsComponent,
     ProfileComponent,
     FavoritesComponent,
@@ -84,6 +72,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     GenericDialogComponent,
     PresentationComponent,
   ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -100,18 +96,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatRadioModule,
     MatChipsModule,
     MatProgressSpinnerModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
     HttpClientModule,
     NgxSkeletonLoaderModule,
+    BreadcrumbModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

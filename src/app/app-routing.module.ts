@@ -15,11 +15,31 @@ import { ProfileEditComponent } from './pages/profile-edit/profile-edit.componen
 import { PresentationComponent } from './pages/presentation/presentation.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'forgotten-password', component: ForgottenPasswordComponent },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./pages/register/register.module').then((m) => m.RegisterModule),
+  },
+  {
+    path: 'forgotten-password',
+    loadChildren: () =>
+      import('./pages/forgotten-password/forgotten-password.module').then(
+        (m) => m.ForgottenPasswordModule
+      ),
+  },
   { path: 'forgotten', redirectTo: 'forgotten-password' },
-  { path: 'new-password', component: NewPasswordComponent },
+  {
+    path: 'new-password',
+    loadChildren: () =>
+      import('./pages/new-password/new-password.module').then(
+        (m) => m.NewPasswordModule
+      ),
+  },
   { path: 'news', component: NewsComponent },
   { path: 'news/:title', component: NewsDescriptionComponent },
   { path: 'favorites', component: FavoritesComponent },

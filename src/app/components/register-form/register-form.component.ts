@@ -16,6 +16,7 @@ import { Category, Departments } from 'src/app/models/test-data.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'register-form',
@@ -44,6 +45,7 @@ export class RegisterFormComponent implements OnInit {
   ];
   public arrayDepartments: Category[] = [];
   public stringDepartments: String[] = [];
+  public urlAddress = environment.urlAddress;
   public isShowPassword: boolean = false;
   public isRadioCheck: boolean = false;
   public isDisabled: boolean = true;
@@ -131,9 +133,13 @@ export class RegisterFormComponent implements OnInit {
     //TO DO el server debería devolver algo correcto
     try {
       const res = await lastValueFrom(
-        this.http.post<any>('/api/users/register/', body.toString(), {
-          headers: headers,
-        })
+        this.http.post<any>(
+          `${this.urlAddress}users/register/`,
+          body.toString(),
+          {
+            headers: headers,
+          }
+        )
       );
       localStorage.clear();
       console.log('Registro exitoso', res);
@@ -211,7 +217,7 @@ export class RegisterFormComponent implements OnInit {
 
     while (true) {
       let departments = await this.network.call(
-        `/api/departments/?page=${page}`,
+        `${this.urlAddress}departments/?page=${page}`,
         httpMethod,
         false
       );

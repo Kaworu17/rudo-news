@@ -12,6 +12,7 @@ import {
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -81,6 +82,7 @@ export class Network {
   constructor(private http: HttpClient, private router: Router) {}
 
   server: string = 'https://academy.rudo.es/';
+  urlAddress = environment.urlAddress;
   data: GetAuthToken = {
     access_token: '',
     expires_in: 0,
@@ -230,7 +232,7 @@ export class Network {
     });
 
     return lastValueFrom(
-      this.http.post<AuthToken>(`/api/auth/token`, callData, {
+      this.http.post<AuthToken>(`${this.urlAddress}auth/token`, callData, {
         headers: headers,
       })
     )
@@ -259,7 +261,9 @@ export class Network {
 
     try {
       const response: AuthToken = await lastValueFrom(
-        this.http.post<AuthToken>(`/api/auth/token`, callData, { headers })
+        this.http.post<AuthToken>(`${this.urlAddress}auth/token`, callData, {
+          headers,
+        })
       );
 
       console.log('auth de refreshToken: ', response);

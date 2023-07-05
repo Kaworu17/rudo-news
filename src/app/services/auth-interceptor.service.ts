@@ -7,6 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Network } from './backend-data.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,16 +15,17 @@ import { Network } from './backend-data.service';
 export class AuthInterceptorService implements HttpInterceptor {
   constructor(public network: Network) {}
 
+  urlAddress = environment.urlAddress;
   exceptions: string[] = [
-    '/api/auth/token',
-    '/api/auth/forgotten-password',
-    '/api/profile/faq',
-    '/api/profile/policys',
-    '/api/categories/',
-    '/api/departments/',
-    '/api/users/register/',
-    '/api/posts/1/comments/',
-    '/api/departments/',
+    `${this.urlAddress}auth/token`,
+    `${this.urlAddress}auth/forgotten-password`,
+    `${this.urlAddress}profile/faq`,
+    `${this.urlAddress}profile/policys`,
+    `${this.urlAddress}categories/`,
+    `${this.urlAddress}departments/`,
+    `${this.urlAddress}users/register/`,
+    `${this.urlAddress}posts/1/comments/`,
+    `${this.urlAddress}departments/`,
   ];
 
   intercept(

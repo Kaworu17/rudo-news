@@ -1,7 +1,16 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NewsData } from 'src/app/models/test-data.model';
 import { Network } from 'src/app/services/backend-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'card',
@@ -13,7 +22,25 @@ export class CardComponent {
   public favorite: boolean = this.news.is_favorite;
   public contentLoaded = false;
 
-  constructor(private network: Network) {}
+  constructor(
+    private network: Network,
+    private router: Router,
+    private _snackBar: MatSnackBar,
+    private clipboard: Clipboard
+  ) {}
+
+  urlToClipboard(id: number): string {
+    let url: string = window.location.href + '/' + id.toString();
+    this.openSnackBar(`Copiado: ${url}`, 'Close');
+    this.clipboard.copy(url);
+    return url;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   isFavorite() {
     this.news.is_favorite = !this.news.is_favorite;

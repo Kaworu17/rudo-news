@@ -33,13 +33,10 @@
       }}</span>
     </div>
     <div class="icons">
-      <!-- <mat-icon (click)="isFavorite()">
-        {{ favorite ? "favorite" : "favorite_border" }}
-      </mat-icon> -->
       <mat-icon class="heart" (click)="isFavorite()">
         {{ news.is_favorite ? "favorite" : "favorite_border" }}
       </mat-icon>
-      <mat-icon>
+      <mat-icon class="share" (click)="urlToClipboard(news.id)">
         {{ "share" }}
       </mat-icon>
     </div>

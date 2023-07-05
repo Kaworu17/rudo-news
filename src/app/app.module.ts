@@ -37,6 +37,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BreadcrumbModule } from './components/breadcrumb/breadcrumb.module';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import { BreadcrumbModule } from './components/breadcrumb/breadcrumb.module';
     HttpClientModule,
     NgxSkeletonLoaderModule,
     BreadcrumbModule,
+    ClipboardModule,
+    MatSnackBarModule,
   ],
 })
 export class AppModule {}
